@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".module.main.activity.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            style="@style/mian_bottom_radiobutton_style"
+            android:drawableTop="@drawable/icon_main_bottom_home"
+            android:text="首页" />
+
+        <RadioButton
+            android:id="@+id/rb_bible"
+            style="@style/mian_bottom_radiobutton_style"
+            android:drawableTop="@drawable/icon_main_bottom_bible"
+            android:text="装修宝典" />
+
+        <RadioButton
+            android:id="@+id/rb_mine"
+            style="@style/mian_bottom_radiobutton_style"
+            android:drawableTop="@drawable/icon_main_bottom_mine"
+            android:text="我的" />
+
+    </RadioGroup>
+
+</LinearLayout>
