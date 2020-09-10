@@ -12,4 +12,8 @@
     <color name="bottom_text_color_selected">#FE9D00</color>
 
     <color name="home_text_color">#8a8f99</color>
+
+    <color name="mine_num_color">#080e1a</color>
+    <color name="mine_item_color">#3d424c</color>
+    <color name="mine_bg_divide">#f2f3f5</color>
 </resources>

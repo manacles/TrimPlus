@@ -37,4 +37,25 @@ dependencies {
     implementation 'com.youth.banner:banner:2.1.0'
     //recyclerview
     implementation "androidx.recyclerview:recyclerview:1.1.0"
+    //Rxjava & Rxandroid
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+    //配合Rxjava的空间绑定
+    implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
+    //网络服务访问Retrofit & okhttp
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.8.1'
+    implementation 'com.squareup.okio:okio:2.7.0'
+    //fastjson
+    implementation 'com.alibaba:fastjson:1.2.72'
+    //网络拦截打印日志
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.0'
+    //stetho:用chrome调试APP
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
