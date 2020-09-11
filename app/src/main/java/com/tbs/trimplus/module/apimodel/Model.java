@@ -4,6 +4,7 @@ import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.module.api.Api;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Mine;
+import com.tbs.trimplus.module.user.bean.UserInfo;
 import com.tbs.trimplus.utils.ApiUtil;
 
 import java.util.Map;
@@ -35,4 +36,14 @@ public class Model implements IModel {
         api = ApiInstance();
         return api.getMineData(params);
     }
+
+    //获取个人信息数据
+    @Override
+    public Observable<BaseObject<UserInfo>> getUserInfoData(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getUserInfoData(params);
+    }
+
+
+
 }

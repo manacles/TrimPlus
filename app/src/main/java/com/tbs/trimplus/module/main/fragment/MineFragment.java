@@ -25,6 +25,7 @@ import com.tbs.trimplus.module.main.adapter.RecyclerViewMineAdapter;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.main.presenter.impl.GetMineDataPresenter;
 import com.tbs.trimplus.module.main.view.IgetMineDataView;
+import com.tbs.trimplus.module.user.ui.UserInfoActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.CacheUtil;
 import com.tbs.trimplus.utils.Constant;
@@ -110,6 +111,7 @@ public class MineFragment extends BaseFragment implements IgetMineDataView {
             isLogin = false;
 
             llMineUserNum.setVisibility(View.GONE);
+            ivMineIcon.setImageResource(R.drawable.icon_head_default);
             tvMineName.setText("点击登录");
         }
         //设置Mine页面数据
@@ -130,6 +132,7 @@ public class MineFragment extends BaseFragment implements IgetMineDataView {
                  */
                 if (AppUtil.isLogin(context)) {
                     //已经登录状态
+                    startActivity(new Intent(context, UserInfoActivity.class));
                 } else {
                     //未登录
                     startActivity(new Intent(context, LoginActivity.class));

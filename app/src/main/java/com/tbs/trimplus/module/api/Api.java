@@ -4,6 +4,7 @@ package com.tbs.trimplus.module.api;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Mine;
+import com.tbs.trimplus.module.user.bean.UserInfo;
 
 import java.util.Map;
 
@@ -31,6 +32,12 @@ public interface Api {
     @POST("zapp/myself/index")
     Observable<BaseObject<Mine>> getMineData(@FieldMap Map<String, Object> params);
 
+    /**
+     * 个人信息数据获取
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/user_info")
+    Observable<BaseObject<UserInfo>> getUserInfoData(@FieldMap Map<String,Object> params);
 
 
     @GET("getTitle")

@@ -16,4 +16,8 @@
     <color name="mine_num_color">#080e1a</color>
     <color name="mine_item_color">#3d424c</color>
     <color name="mine_bg_divide">#f2f3f5</color>
+
+    <color name="userinfo_left_text_color">#3D424C</color>
+    <color name="userinfo_right_text_color">#939498</color>
+    <color name="userinfo_line_color">#F2F3F5</color>
 </resources>
