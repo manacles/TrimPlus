@@ -27,13 +27,18 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv_userinfo_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_userinfo_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ellipsize="end"
             android:gravity="end"
-            android:maxLength="8"
+            android:maxEms="8"
+            android:maxLines="1"
             android:textColor="@color/userinfo_right_text_color"
             android:textSize="18sp" />
 

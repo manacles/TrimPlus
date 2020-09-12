@@ -44,6 +44,12 @@ public class Model implements IModel {
         return api.getUserInfoData(params);
     }
 
+    //修改个人信息
+    @Override
+    public Observable<User> changeUserInfo(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.changeUserInfo(params);
+    }
 
 
 }

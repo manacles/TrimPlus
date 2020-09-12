@@ -1,6 +1,7 @@
 package com.tbs.trimplus.module.user.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import com.facebook.stetho.common.LogUtil;
@@ -70,6 +72,9 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
         setContentView(R.layout.activity_user_info);
         ButterKnife.bind(this);
 
+        initToolbar(toolbar);
+        toolbarTitle.setText("个人信息");
+
         initListenter();
 
         getUserInfoDataPresenter = new GetUserInfoDataPresenter(new Model(), this);
@@ -77,12 +82,16 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
     }
 
     private void initListenter() {
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        llUserinfoName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(UserInfoActivity.this, ChangeUserNameActivity.class);
+                intent.putExtra("username", tvUserinfoName.getText().toString().trim());
+                startActivityForResult(intent, Constant.CHANGE_USERNAME_REQUESTCODE);
             }
         });
+
+        //退出登录
         llUserinfoSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,5 +144,21 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
         tvUserinfoSex.setText(userInfo.getGender());
         tvUserinfoCity.setText(userInfo.getCity());
         tvUserinfoDecorateType.setText(userInfo.getDecorate_type());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case Constant.CHANGE_USERNAME_REQUESTCODE:
+                if (data != null) {
+                    tvUserinfoName.setText(data.getStringExtra("newname"));
+                }
+                break;
+            default:
+                break;
+
+        }
     }
 }

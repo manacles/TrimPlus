@@ -18,5 +18,8 @@ public interface IModel {
     Observable<BaseObject<Mine>> getMineData(Map<String, Object> params);
 
     //获取个人信息数据
-    Observable<BaseObject<UserInfo>> getUserInfoData(Map<String,Object> params);
+    Observable<BaseObject<UserInfo>> getUserInfoData(Map<String, Object> params);
+
+    //修改个人信息
+    Observable<User> changeUserInfo(Map<String, Object> params);
 }

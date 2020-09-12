@@ -37,7 +37,15 @@ public interface Api {
      */
     @FormUrlEncoded
     @POST("zapp/myself/user_info")
-    Observable<BaseObject<UserInfo>> getUserInfoData(@FieldMap Map<String,Object> params);
+    Observable<BaseObject<UserInfo>> getUserInfoData(@FieldMap Map<String, Object> params);
+
+
+    /**
+     * 修改个人信息
+     */
+    @FormUrlEncoded
+    @POST("tapp/user/chage_user_info")
+    Observable<User> changeUserInfo(@FieldMap Map<String, Object> params);
 
 
     @GET("getTitle")
