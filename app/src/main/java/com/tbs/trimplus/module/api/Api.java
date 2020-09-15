@@ -41,11 +41,26 @@ public interface Api {
 
 
     /**
-     * 修改个人信息
+     * 修改个人信息（field：1.修改昵称）
      */
     @FormUrlEncoded
     @POST("tapp/user/chage_user_info")
     Observable<User> changeUserInfo(@FieldMap Map<String, Object> params);
+
+    /**
+     * 修改个人信息--性别
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/set_gender")
+    Observable<BaseObject> setGender(@FieldMap Map<String, Object> params);
+
+    /**
+     * 修改个人信息--装修阶段
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/set_decorate")
+    Observable<BaseObject> setDecorate(@FieldMap Map<String,Object> params);
+
 
 
     @GET("getTitle")

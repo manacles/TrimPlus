@@ -16,14 +16,16 @@
         android:theme="@style/AppTheme">
         <activity android:name=".module.user.ui.ChangeUserNameActivity"
             android:windowSoftInputMode="stateVisible"></activity>
-        <activity android:name=".module.user.ui.UserInfoActivity" />
-        <activity android:name=".module.login.activity.LoginActivity" />
-        <activity android:name=".module.welcome.activity.WelcomeActivity">
+        <activity android:name=".module.user.ui.UserInfoActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".module.login.activity.LoginActivity" />
+        <activity android:name=".module.welcome.activity.WelcomeActivity">
+
         </activity>
         <activity android:name=".module.main.activity.MainActivity" />
     </application>

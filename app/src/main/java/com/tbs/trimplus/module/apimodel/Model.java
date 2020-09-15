@@ -51,5 +51,17 @@ public class Model implements IModel {
         return api.changeUserInfo(params);
     }
 
+    //修改性别
+    @Override
+    public Observable<BaseObject> setGender(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.setGender(params);
+    }
 
+    //修改装修阶段
+    @Override
+    public Observable<BaseObject> setDecorate(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.setDecorate(params);
+    }
 }

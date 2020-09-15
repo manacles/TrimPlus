@@ -3,13 +3,18 @@ package com.tbs.trimplus.module.user.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ListPopupWindow;
 import androidx.appcompat.widget.Toolbar;
 
 import com.facebook.stetho.common.LogUtil;
@@ -25,6 +30,7 @@ import com.tbs.trimplus.utils.CacheUtil;
 import com.tbs.trimplus.utils.Constant;
 import com.tbs.trimplus.utils.GlideUtil;
 import com.tbs.trimplus.utils.ToastUtil;
+import com.tbs.trimplus.view.BottomListPopupWindow;
 import com.tbs.trimplus.view.SignOutDialog;
 
 import java.util.HashMap;
@@ -65,6 +71,10 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
 
     private GetUserInfoDataPresenter getUserInfoDataPresenter;
     private UserInfo userInfo;
+    private String uid;
+
+    private BottomListPopupWindow sexPopupWindow;
+    private BottomListPopupWindow decorateTypePopupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +85,25 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
         initToolbar(toolbar);
         toolbarTitle.setText("个人信息");
 
+        uid = CacheUtil.getString(this, Constant.USER_INFO, "uid");
+
+        initView();
         initListenter();
 
         getUserInfoDataPresenter = new GetUserInfoDataPresenter(new Model(), this);
         getUserInfoDataRequest();
     }
 
+    private void initView() {
+        String mark = CacheUtil.getString(this, Constant.USER_INFO, "mark");
+        if (mark.equals("3")) {
+            llUserinfoSex.setVisibility(View.GONE);
+            llUserinfoDecorateType.setVisibility(View.GONE);
+        }
+    }
+
     private void initListenter() {
+        //修改昵称
         llUserinfoName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +112,53 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
                 startActivityForResult(intent, Constant.CHANGE_USERNAME_REQUESTCODE);
             }
         });
+
+        //修改性别
+        llUserinfoSex.setOnClickListener(new View.OnClickListener() {
+            String[] data = Constant.SEX_DATA;
+
+            @Override
+            public void onClick(View v) {
+                sexPopupWindow = new BottomListPopupWindow(UserInfoActivity.this, "选择性别", data);
+                sexPopupWindow.showAtLocation(UserInfoActivity.this.findViewById(R.id.userinfo_layout),
+                        Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+
+                sexPopupWindow.setOnItemClickListener(new BottomListPopupWindow.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        if (tvUserinfoSex.getText().toString().trim().equals(data[position])) {
+                            return;
+                        }
+                        setGenderRequest(position);
+                    }
+                });
+            }
+        });
+
+        //装修阶段
+        llUserinfoDecorateType.setOnClickListener(new View.OnClickListener() {
+            String[] data = Constant.DECORATETYPE_DATA;
+
+            @Override
+            public void onClick(View v) {
+                decorateTypePopupWindow = new BottomListPopupWindow(UserInfoActivity.this,
+                        "装修阶段", data);
+                decorateTypePopupWindow.showAtLocation(UserInfoActivity.this.findViewById(R.id.userinfo_layout),
+                        Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+
+                decorateTypePopupWindow.setOnItemClickListener(new BottomListPopupWindow.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        if (tvUserinfoDecorateType.getText().toString().trim().equals(data[position])) {
+                            return;
+                        }
+                        setDecorateRequest(position);
+                    }
+                });
+
+            }
+        });
+
 
         //退出登录
         llUserinfoSignOut.setOnClickListener(new View.OnClickListener() {
@@ -108,10 +177,11 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
                 signOutDialog.show();
             }
         });
+
+
     }
 
     private void getUserInfoDataRequest() {
-        String uid = CacheUtil.getString(this, Constant.USER_INFO, "uid");
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", AppUtil.getDateToken());
         params.put("uid", uid);
@@ -144,6 +214,40 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
         tvUserinfoSex.setText(userInfo.getGender());
         tvUserinfoCity.setText(userInfo.getCity());
         tvUserinfoDecorateType.setText(userInfo.getDecorate_type());
+    }
+
+    private void setGenderRequest(int sex) {
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("token", AppUtil.getDateToken());
+        param.put("uid", uid);
+        param.put("gender", sex);
+        getUserInfoDataPresenter.setGender(param, sex);
+    }
+
+    @Override
+    public void setGender(BaseObject baseObject, int sex) {
+        if (baseObject.getStatus().equals("200")) {
+            tvUserinfoSex.setText(Constant.SEX_DATA[sex]);
+            CacheUtil.putString(this, Constant.USER_INFO, "gender", Constant.SEX_DATA[sex]);
+        }
+        LogUtil.e(baseObject.toString());
+    }
+
+    private void setDecorateRequest(int decorateType) {
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("decorate_type", decorateType + 1);
+        param.put("token", AppUtil.getDateToken());
+        param.put("uid", uid);
+        getUserInfoDataPresenter.setDecorate(param, decorateType);
+    }
+
+    @Override
+    public void setDecorate(BaseObject baseObject, int decorateType) {
+        if (baseObject.getStatus().equals("200")) {
+            tvUserinfoDecorateType.setText(Constant.DECORATETYPE_DATA[decorateType]);
+            CacheUtil.putString(this, Constant.USER_INFO, "decorate_type", Constant.DECORATETYPE_DATA[decorateType]);
+        }
+        LogUtil.e(baseObject.toString());
     }
 
     @Override

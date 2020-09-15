@@ -2,16 +2,11 @@ package com.tbs.trimplus.view;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.tbs.trimplus.R;
-import com.tbs.trimplus.module.user.ui.UserInfoActivity;
-import com.tbs.trimplus.utils.Constant;
-import com.tbs.trimplus.utils.ToastUtil;
 
 public abstract class SignOutDialog {
     private Context context;

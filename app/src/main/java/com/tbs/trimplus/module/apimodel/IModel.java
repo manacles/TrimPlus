@@ -22,4 +22,10 @@ public interface IModel {
 
     //修改个人信息
     Observable<User> changeUserInfo(Map<String, Object> params);
+
+    //修改性别
+    Observable<BaseObject> setGender(Map<String, Object> params);
+
+    //修改装修阶段
+    Observable<BaseObject> setDecorate(Map<String, Object> params);
 }

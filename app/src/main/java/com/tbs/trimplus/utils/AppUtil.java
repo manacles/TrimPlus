@@ -1,7 +1,14 @@
 package com.tbs.trimplus.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+
+import androidx.core.view.ViewCompat;
 
 import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.module.login.bean.User;
