@@ -13,4 +13,6 @@ public class Constant {
 
     public static final int CHANGE_USERNAME_REQUESTCODE = 1;
     public static final int CHANGE_USERNAME_RESULTCODE = 11;
+
+    public static final int CHANGE_USER_CITY_RESULTCODE = 22;
 }

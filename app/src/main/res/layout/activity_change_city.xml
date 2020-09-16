@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context=".module.user.ui.ChangeCityActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <!--城市列表 start-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!--搜索栏-->
+                <include layout="@layout/layout_search" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <!--城市列表 end-->
+
+            <!-- 搜索的城市不存在布局 start -->
+            <ImageView
+                android:id="@+id/iv_search_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/selectcity_empty"
+                android:visibility="gone" />
+            <!-- 搜索的城市不存在布局 end -->
+
+            <!--城市列表加载中 start-->
+            <LinearLayout
+                android:id="@+id/ll_city_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminateOnly="true"
+
+                    android:maxWidth="38dp"
+                    android:maxHeight="38dp"
+                    android:minWidth="38dp"
+                    android:minHeight="38dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:text="城市列表加载中..."
+                    android:textColor="#74777a"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <!--城市列表加载中 end-->
+
+        </FrameLayout>
+
+        <com.tbs.trimplus.view.SideIndexBar
+            android:layout_width="36dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

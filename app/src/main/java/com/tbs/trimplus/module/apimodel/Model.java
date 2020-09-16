@@ -1,9 +1,11 @@
 package com.tbs.trimplus.module.apimodel;
 
 import com.tbs.trimplus.common.bean.BaseObject;
+import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.api.Api;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Mine;
+import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 import com.tbs.trimplus.utils.ApiUtil;
 
@@ -63,5 +65,12 @@ public class Model implements IModel {
     public Observable<BaseObject> setDecorate(Map<String, Object> params) {
         api = ApiInstance();
         return api.setDecorate(params);
+    }
+
+    //获取城市信息
+    @Override
+    public Observable<ResultList<City>> getCity(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getCity(params);
     }
 }

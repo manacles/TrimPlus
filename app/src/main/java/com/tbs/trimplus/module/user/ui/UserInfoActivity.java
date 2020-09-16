@@ -135,6 +135,15 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
             }
         });
 
+        //城市
+        llUserinfoCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserInfoActivity.this,ChangeCityActivity.class);
+                startActivityForResult(intent,Constant.CHANGE_USER_CITY_RESULTCODE);
+            }
+        });
+
         //装修阶段
         llUserinfoDecorateType.setOnClickListener(new View.OnClickListener() {
             String[] data = Constant.DECORATETYPE_DATA;
@@ -158,7 +167,6 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
 
             }
         });
-
 
         //退出登录
         llUserinfoSignOut.setOnClickListener(new View.OnClickListener() {

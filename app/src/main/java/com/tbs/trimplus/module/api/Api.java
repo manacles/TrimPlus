@@ -2,8 +2,10 @@ package com.tbs.trimplus.module.api;
 
 
 import com.tbs.trimplus.common.bean.BaseObject;
+import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Mine;
+import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 
 import java.util.Map;
@@ -59,8 +61,14 @@ public interface Api {
      */
     @FormUrlEncoded
     @POST("zapp/myself/set_decorate")
-    Observable<BaseObject> setDecorate(@FieldMap Map<String,Object> params);
+    Observable<BaseObject> setDecorate(@FieldMap Map<String, Object> params);
 
+    /**
+     * 获取城市信息
+     */
+    @FormUrlEncoded
+    @POST("tapp/util/change_city")
+    Observable<ResultList<City>> getCity(@FieldMap Map<String, Object> params);
 
 
     @GET("getTitle")

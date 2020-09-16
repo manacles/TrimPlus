@@ -2,8 +2,10 @@ package com.tbs.trimplus.module.apimodel;
 
 
 import com.tbs.trimplus.common.bean.BaseObject;
+import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Mine;
+import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 
 import java.util.Map;
@@ -28,4 +30,7 @@ public interface IModel {
 
     //修改装修阶段
     Observable<BaseObject> setDecorate(Map<String, Object> params);
+
+    //获取城市信息
+    Observable<ResultList<City>> getCity(Map<String, Object> params);
 }
