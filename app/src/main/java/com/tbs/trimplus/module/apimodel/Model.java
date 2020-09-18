@@ -32,6 +32,13 @@ public class Model implements IModel {
         return api.loginByPassword(params);
     }
 
+    //短信验证码登录
+    @Override
+    public Observable<User> loginByVerifyCode(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.loginByVerifyCode(params);
+    }
+
     //获取Mine界面数据
     @Override
     public Observable<BaseObject<Mine>> getMineData(Map<String, Object> params) {

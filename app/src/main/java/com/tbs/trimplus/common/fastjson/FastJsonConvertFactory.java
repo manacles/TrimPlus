@@ -1,7 +1,5 @@
 package com.tbs.trimplus.common.fastjson;
 
-import android.util.Log;
-
 import com.alibaba.fastjson.JSON;
 import com.facebook.stetho.common.LogUtil;
 

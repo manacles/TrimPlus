@@ -28,6 +28,13 @@ public interface Api {
     Observable<User> loginByPassword(@FieldMap Map<String, Object> params);
 
     /**
+     * 短信验证码登录
+     */
+    @FormUrlEncoded
+    @POST("tapp/passport/fast_register_mt")
+    Observable<User> loginByVerifyCode(@FieldMap Map<String, Object> params);
+
+    /**
      * 我的界面数据获取
      */
     @FormUrlEncoded

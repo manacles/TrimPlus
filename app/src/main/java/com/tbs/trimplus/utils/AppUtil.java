@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.core.view.ViewCompat;
 
@@ -16,6 +17,8 @@ import com.tbs.trimplus.module.login.bean.User;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AppUtil {
     public static boolean isLogin(Context context) {
@@ -69,5 +72,30 @@ public class AppUtil {
         String s = MD5Util.md5(md5ZHJ + mTime);
         String dataToken = Base64Util.getBase64(s);
         return dataToken;
+    }
+
+
+    /***
+     * 判断电话号码是否合法
+     * @param mContext
+     * @param phoneNum
+     * @return
+     */
+    public static boolean judgePhone(Context mContext, String phoneNum) {
+        phoneNum = phoneNum.replaceAll("-", "");
+
+        if ("".equals(phoneNum)) {
+            ToastUtil.sToast(mContext, "请输入手机号");
+            return false;
+        } else {
+            String MOBILE = "^1[3-9]\\d{9}$";
+            Pattern pattern = Pattern.compile(MOBILE);
+            Matcher matcher = pattern.matcher(phoneNum);
+            boolean flag = matcher.matches();
+            if (!flag) {
+                Toast.makeText(mContext, "请输入合法电话号码", Toast.LENGTH_SHORT).show();
+            }
+            return matcher.matches();
+        }
     }
 }

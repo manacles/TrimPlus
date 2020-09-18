@@ -16,6 +16,9 @@ public interface IModel {
     //账号密码登录
     Observable<User> loginByPassword(Map<String, Object> params);
 
+    //短信验证码登录
+    Observable<User> loginByVerifyCode(Map<String, Object> params);
+
     //获取Mine界面数据
     Observable<BaseObject<Mine>> getMineData(Map<String, Object> params);
 
