@@ -1,9 +1,6 @@
 package com.tbs.trimplus.module.main.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,24 +10,20 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseFragment;
 import com.tbs.trimplus.common.bean.BaseObject;
-import com.tbs.trimplus.module.apimodel.IModel;
 import com.tbs.trimplus.module.apimodel.Model;
 import com.tbs.trimplus.module.login.activity.LoginActivity;
 import com.tbs.trimplus.module.main.adapter.RecyclerViewMineAdapter;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.main.presenter.impl.GetMineDataPresenter;
 import com.tbs.trimplus.module.main.view.IgetMineDataView;
-import com.tbs.trimplus.module.user.ui.UserInfoActivity;
+import com.tbs.trimplus.module.user.activity.UserInfoActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.CacheUtil;
 import com.tbs.trimplus.utils.Constant;
 import com.tbs.trimplus.utils.GlideUtil;
-import com.tbs.trimplus.utils.MD5Util;
 import com.tbs.trimplus.utils.ToastUtil;
 
 import java.util.HashMap;

@@ -1,9 +1,11 @@
 package com.tbs.trimplus.module.api;
 
 
+import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.login.bean.User;
+import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.UserInfo;
@@ -13,9 +15,7 @@ import java.util.Map;
 import io.reactivex.Observable;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 
 public interface Api {
@@ -77,19 +77,24 @@ public interface Api {
     @POST("tapp/util/change_city")
     Observable<ResultList<City>> getCity(@FieldMap Map<String, Object> params);
 
+    /**
+     * 获取历史记录
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/history_record")
+    Observable<BaseList<Bible>> getHistoryRecord(@FieldMap Map<String, Object> params);
 
-    @GET("getTitle")
-    Observable<BaseObject<String>> getTitle(@Query("id") String titleId);
 
     /*get和post两种请求写法
      */
 
-    /**
-     * 账号密码登录
-     *//*
+    /*
         @FormUrlEncoded
         @POST("get")
         Observable<BaseObject<User>> LoginPswd(@FieldMap Map<String, Object> praise);
+
+        @GET("getTitle")
+        Observable<BaseObject<String>> getTitle(@Query("id") String titleId);
 
 
         @GET("pushMsg/getPushMessageList")

@@ -1,9 +1,11 @@
 package com.tbs.trimplus.module.apimodel;
 
+import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.api.Api;
 import com.tbs.trimplus.module.login.bean.User;
+import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.UserInfo;
@@ -79,5 +81,12 @@ public class Model implements IModel {
     public Observable<ResultList<City>> getCity(Map<String, Object> params) {
         api = ApiInstance();
         return api.getCity(params);
+    }
+
+    //获取历史记录
+    @Override
+    public Observable<BaseList<Bible>> getHistoryRecord(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getHistoryRecord(params);
     }
 }

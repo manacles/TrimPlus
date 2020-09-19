@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tbs.trimplus.R;
+import com.tbs.trimplus.module.history.activity.HistoryActivity;
 import com.tbs.trimplus.module.login.activity.LoginActivity;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.utils.AppUtil;
@@ -145,7 +146,7 @@ public class RecyclerViewMineAdapter extends RecyclerView.Adapter {
                         case 2:
                             if (AppUtil.isLogin(context)) {
                                 //已经登录状态
-                                ToastUtil.sToast(context, "历史记录");
+                                context.startActivity(new Intent(context, HistoryActivity.class));
                             } else {
                                 //未登录
                                 context.startActivity(new Intent(context, LoginActivity.class));

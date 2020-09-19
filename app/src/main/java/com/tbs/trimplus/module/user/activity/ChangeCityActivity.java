@@ -1,4 +1,4 @@
-package com.tbs.trimplus.module.user.ui;
+package com.tbs.trimplus.module.user.activity;
 
 import android.os.Bundle;
 import android.widget.TextView;

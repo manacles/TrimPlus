@@ -1,9 +1,11 @@
 package com.tbs.trimplus.module.apimodel;
 
 
+import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.login.bean.User;
+import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.UserInfo;
@@ -36,4 +38,7 @@ public interface IModel {
 
     //获取城市信息
     Observable<ResultList<City>> getCity(Map<String, Object> params);
+
+    //获取历史记录
+    Observable<BaseList<Bible>> getHistoryRecord(Map<String, Object> params);
 }
