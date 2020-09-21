@@ -18,6 +18,7 @@ import com.tbs.trimplus.module.history.activity.HistoryActivity;
 import com.tbs.trimplus.module.login.activity.LoginActivity;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.setting.activity.FeedBackActivity;
+import com.tbs.trimplus.module.setting.activity.SettingActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.Constant;
 import com.tbs.trimplus.utils.ToastUtil;
@@ -164,7 +165,7 @@ public class RecyclerViewMineAdapter extends RecyclerView.Adapter {
                             ToastUtil.sToast(context, "分享好友");
                             break;
                         case 6:
-                            ToastUtil.sToast(context, "系统设置");
+                            context.startActivity(new Intent(context, SettingActivity.class));
                             break;
                         default:
                             break;

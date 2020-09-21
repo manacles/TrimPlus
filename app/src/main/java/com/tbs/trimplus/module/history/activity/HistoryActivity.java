@@ -1,18 +1,15 @@
 package com.tbs.trimplus.module.history.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseActivity;
 import com.tbs.trimplus.common.bean.BaseList;
@@ -25,6 +22,7 @@ import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.CacheUtil;
 import com.tbs.trimplus.utils.Constant;
 import com.tbs.trimplus.utils.ToastUtil;
+import com.tbs.trimplus.view.CustomWaitDialog;
 import com.tbs.trimplus.view.RecyclerViewOnUpScrollListener;
 
 import java.util.ArrayList;
@@ -53,6 +51,8 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
 
     private GetHistoryRecordPresenter getHistoryRecordPresenter;
 
+    private CustomWaitDialog customWaitDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +61,7 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
 
         toolbarTitle.setText("历史记录");
         initToolbar(toolbar);
+        customWaitDialog = new CustomWaitDialog(this);
 
         recyclerview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
@@ -76,6 +77,7 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
     }
 
     private void getHistoryRecordRequest(int mpage) {
+        customWaitDialog.show();
         swiperefreshlayout.setRefreshing(false);
         String uid = CacheUtil.getString(this, Constant.USER_INFO, "uid");
         HashMap<String, Object> params = new HashMap<>();
@@ -88,6 +90,7 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
 
     @Override
     public void getHistoryRecord(BaseList<Bible> bibleBaseList) {
+        customWaitDialog.dismiss();
         if (adapter != null) {
             adapter.hideFootView();
         }

@@ -71,7 +71,6 @@ public class LoginActivity extends AppCompatActivity implements IloginByPassword
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            // TODO Auto-generated method stub
             //要做的事情
             LogUtil.e(countDown + "");
             countDown--;

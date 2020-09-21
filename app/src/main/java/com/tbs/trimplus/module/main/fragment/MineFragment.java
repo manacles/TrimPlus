@@ -157,7 +157,6 @@ public class MineFragment extends BaseFragment implements IgetMineDataView {
     @Override
     public void getMineData(BaseObject<Mine> mineBaseObject) {
         if (mineBaseObject.getStatus().equals("200")) {
-            ToastUtil.sToast(context, "Mine数据获取成功");
             mine = mineBaseObject.getData();
             //获取到数据，刷新recyclerview展示数据
             showData();

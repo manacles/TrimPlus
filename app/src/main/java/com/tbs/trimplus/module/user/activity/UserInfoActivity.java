@@ -27,7 +27,7 @@ import com.tbs.trimplus.utils.Constant;
 import com.tbs.trimplus.utils.GlideUtil;
 import com.tbs.trimplus.utils.ToastUtil;
 import com.tbs.trimplus.view.BottomListPopupWindow;
-import com.tbs.trimplus.view.SignOutDialog;
+import com.tbs.trimplus.view.CustomSelectDialog;
 
 import java.util.HashMap;
 
@@ -135,8 +135,8 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
         llUserinfoCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserInfoActivity.this,ChangeCityActivity.class);
-                startActivityForResult(intent,Constant.CHANGE_USER_CITY_RESULTCODE);
+                Intent intent = new Intent(UserInfoActivity.this, ChangeCityActivity.class);
+                startActivityForResult(intent, Constant.CHANGE_USER_CITY_RESULTCODE);
             }
         });
 
@@ -168,7 +168,8 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
         llUserinfoSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignOutDialog signOutDialog = new SignOutDialog(UserInfoActivity.this, R.style.custom_dialog) {
+                CustomSelectDialog signOutDialog = new CustomSelectDialog(UserInfoActivity.this,
+                        "您确定退出吗？", 1, R.style.custom_dialog) {
 
                     @Override
                     public void onSureClick() {
@@ -195,7 +196,6 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
     @Override
     public void getUserInfoData(BaseObject<UserInfo> userInfoBaseObject) {
         if (userInfoBaseObject.getStatus().equals("200")) {
-            ToastUtil.sToast(this, "个人信息获取成功");
             LogUtil.e(userInfoBaseObject.toString());
 
             userInfo = userInfoBaseObject.getData();
