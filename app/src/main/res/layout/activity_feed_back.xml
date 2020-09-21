@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".module.setting.activity.FeedBackActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <EditText
+        android:id="@+id/et_feedback_content"
+        android:layout_width="match_parent"
+        android:layout_height="189dp"
+        android:background="#FFFFFF"
+        android:gravity="top|start"
+        android:hint="感谢对装好家的支持，请输入您的反馈..."
+        android:padding="10dp"
+        android:textColorHint="#8A8F99"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/et_feedback_contact"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
+        android:gravity="start|center_vertical"
+        android:hint="邮箱或者手机号(选填)"
+        android:padding="10dp"
+        android:textColorHint="#8A8F99"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:text="您的联系方式有助于我们沟通和解决问题，仅工作人员可见"
+        android:textColor="#666666"
+        android:textSize="12sp" />
+
+</LinearLayout>

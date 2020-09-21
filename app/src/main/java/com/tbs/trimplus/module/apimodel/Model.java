@@ -89,4 +89,11 @@ public class Model implements IModel {
         api = ApiInstance();
         return api.getHistoryRecord(params);
     }
+
+    //意见反馈
+    @Override
+    public Observable<ResultList> feedback(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.feedback(params);
+    }
 }

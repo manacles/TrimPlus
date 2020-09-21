@@ -84,6 +84,13 @@ public interface Api {
     @POST("zapp/myself/history_record")
     Observable<BaseList<Bible>> getHistoryRecord(@FieldMap Map<String, Object> params);
 
+    /**
+     * 意见反馈
+     */
+    @FormUrlEncoded
+    @POST("tapp/util/feedBackMt")
+    Observable<ResultList> feedback(@FieldMap Map<String, Object> params);
+
 
     /*get和post两种请求写法
      */

@@ -17,6 +17,7 @@ import com.tbs.trimplus.R;
 import com.tbs.trimplus.module.history.activity.HistoryActivity;
 import com.tbs.trimplus.module.login.activity.LoginActivity;
 import com.tbs.trimplus.module.main.bean.Mine;
+import com.tbs.trimplus.module.setting.activity.FeedBackActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.Constant;
 import com.tbs.trimplus.utils.ToastUtil;
@@ -153,22 +154,11 @@ public class RecyclerViewMineAdapter extends RecyclerView.Adapter {
                             }
                             break;
                         case 3:
-                            if (AppUtil.isLogin(context)) {
-                                //已经登录状态
-                                ToastUtil.sToast(context, "消息中心");
-                            } else {
-                                //未登录
-                                context.startActivity(new Intent(context, LoginActivity.class));
-                            }
+                            // TODO: 2020/9/19 跳转到消息中心列表
+//                            context.startActivity(new Intent(context, MessageCenterActivity.class));
                             break;
                         case 4:
-                            if (AppUtil.isLogin(context)) {
-                                //已经登录状态
-                                ToastUtil.sToast(context, "意见反馈");
-                            } else {
-                                //未登录
-                                context.startActivity(new Intent(context, LoginActivity.class));
-                            }
+                            context.startActivity(new Intent(context, FeedBackActivity.class));
                             break;
                         case 5:
                             ToastUtil.sToast(context, "分享好友");

@@ -41,4 +41,8 @@ public interface IModel {
 
     //获取历史记录
     Observable<BaseList<Bible>> getHistoryRecord(Map<String, Object> params);
+
+    //意见反馈
+    Observable<ResultList> feedback(Map<String, Object> params);
+
 }

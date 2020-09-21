@@ -3,6 +3,8 @@ package com.tbs.trimplus.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -97,5 +99,21 @@ public class AppUtil {
             }
             return matcher.matches();
         }
+    }
+
+
+    public static String getAppVersion(Context context) {
+        String versionName = "";
+        try {
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            versionName = pi.versionName;
+            if (versionName == null || versionName.length() <= 0) {
+                return "";
+            }
+        } catch (Exception e) {
+
+        }
+        return versionName;
     }
 }
