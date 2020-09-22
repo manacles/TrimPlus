@@ -6,6 +6,7 @@ import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
+import com.tbs.trimplus.module.main.bean.Home;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.UserInfo;
@@ -44,5 +45,8 @@ public interface IModel {
 
     //意见反馈
     Observable<ResultList> feedback(Map<String, Object> params);
+
+    //获取主页数据
+    Observable<BaseObject<Home>> getIndexData(Map<String, Object> params);
 
 }

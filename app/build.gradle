@@ -62,4 +62,6 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     //swiperefreshlayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    //viewpager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 }

@@ -1,5 +1,6 @@
 package com.tbs.trimplus.module.main.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.RadioGroup;
@@ -16,6 +17,7 @@ import com.tbs.trimplus.module.main.fragment.HomeFragment;
 import com.tbs.trimplus.module.main.fragment.MineFragment;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,12 +60,15 @@ public class MainActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_bible:
+                        getWindow().setStatusBarColor(Color.GRAY);
                         position = 1;
                         break;
                     case R.id.rb_mine:
+                        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
                         position = 2;
                         break;
                     default:
+                        getWindow().setStatusBarColor(Color.GRAY);
                         position = 0;
                         break;
                 }
@@ -106,5 +111,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
+    public RadioGroup getRgMain() {
+        return rgMain;
+    }
 }

@@ -1,6 +1,8 @@
 package com.tbs.trimplus.module.main.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseFragment;
 import com.tbs.trimplus.common.bean.BaseObject;
@@ -27,6 +30,7 @@ import com.tbs.trimplus.utils.GlideUtil;
 import com.tbs.trimplus.utils.ToastUtil;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

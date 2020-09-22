@@ -6,6 +6,7 @@ import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.api.Api;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
+import com.tbs.trimplus.module.main.bean.Home;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.UserInfo;
@@ -95,5 +96,13 @@ public class Model implements IModel {
     public Observable<ResultList> feedback(Map<String, Object> params) {
         api = ApiInstance();
         return api.feedback(params);
+    }
+
+    //获取主页数据
+
+    @Override
+    public Observable<BaseObject<Home>> getIndexData(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getIndexData(params);
     }
 }

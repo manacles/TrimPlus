@@ -6,6 +6,7 @@ import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
+import com.tbs.trimplus.module.main.bean.Home;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.UserInfo;
@@ -91,6 +92,12 @@ public interface Api {
     @POST("tapp/util/feedBackMt")
     Observable<ResultList> feedback(@FieldMap Map<String, Object> params);
 
+    /**
+     * 主页数据获取
+     */
+    @FormUrlEncoded
+    @POST("zapp/index/index")
+    Observable<BaseObject<Home>> getIndexData(@FieldMap Map<String, Object> params);
 
     /*get和post两种请求写法
      */

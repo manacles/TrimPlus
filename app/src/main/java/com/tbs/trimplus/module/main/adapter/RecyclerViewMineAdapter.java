@@ -2,6 +2,7 @@ package com.tbs.trimplus.module.main.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,7 +163,10 @@ public class RecyclerViewMineAdapter extends RecyclerView.Adapter {
                             context.startActivity(new Intent(context, FeedBackActivity.class));
                             break;
                         case 5:
-                            ToastUtil.sToast(context, "分享好友");
+                            String mAddress = "market://details?id=" + context.getPackageName();
+                            Intent marketIntent = new Intent("android.intent.action.VIEW");
+                            marketIntent.setData(Uri.parse(mAddress));
+                            context.startActivity(Intent.createChooser(marketIntent, "请选择要查看的市场软件"));
                             break;
                         case 6:
                             context.startActivity(new Intent(context, SettingActivity.class));
