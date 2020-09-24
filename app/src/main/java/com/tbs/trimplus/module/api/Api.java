@@ -4,6 +4,7 @@ package com.tbs.trimplus.module.api;
 import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
+import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.module.main.bean.Home;
@@ -98,6 +99,20 @@ public interface Api {
     @FormUrlEncoded
     @POST("zapp/index/index")
     Observable<BaseObject<Home>> getIndexData(@FieldMap Map<String, Object> params);
+
+    /**
+     * 获取bible分类
+     */
+    @FormUrlEncoded
+    @POST("zapp/DecorateBook/get_catalog")
+    Observable<BaseList<Catalog>> getCataLog(@FieldMap Map<String, Object> params);
+
+    /**
+     * 获取bible分类列表
+     */
+    @FormUrlEncoded
+    @POST("zapp/DecorateBook/get_article")
+    Observable<BaseList<Bible>> getArticle(@FieldMap Map<String, Object> params);
 
     /*get和post两种请求写法
      */

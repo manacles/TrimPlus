@@ -4,6 +4,8 @@ public class Constant {
 
     public static final String USER_INFO = "user_info";
 
+    public static final String BIBLE_CATALOG = "bible_catalog";
+
     public static final String[] MINE_OPTION = {"我的关注", "推荐关注",
             "历史记录", "消息中心", "意见反馈", "分享好友", "系统设置"};
 
@@ -15,4 +17,8 @@ public class Constant {
     public static final int CHANGE_USERNAME_RESULTCODE = 11;
 
     public static final int CHANGE_USER_CITY_RESULTCODE = 22;
+
+    public static final String CITY_PREFERENCE = "city_preference";
+    public static final String CITY = "city";
+    public static final String CITYJSON = "city_json";
 }

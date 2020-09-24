@@ -4,6 +4,7 @@ import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.api.Api;
+import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.module.main.bean.Home;
@@ -99,10 +100,23 @@ public class Model implements IModel {
     }
 
     //获取主页数据
-
     @Override
     public Observable<BaseObject<Home>> getIndexData(Map<String, Object> params) {
         api = ApiInstance();
         return api.getIndexData(params);
+    }
+
+    //获取bible分类
+    @Override
+    public Observable<BaseList<Catalog>> getCataLog(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getCataLog(params);
+    }
+
+    //获取bible分类列表
+    @Override
+    public Observable<BaseList<Bible>> getArticle(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getArticle(params);
     }
 }

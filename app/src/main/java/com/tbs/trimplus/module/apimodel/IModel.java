@@ -4,6 +4,7 @@ package com.tbs.trimplus.module.apimodel;
 import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
+import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.module.main.bean.Home;
@@ -48,5 +49,11 @@ public interface IModel {
 
     //获取主页数据
     Observable<BaseObject<Home>> getIndexData(Map<String, Object> params);
+
+    //获取bible分类
+    Observable<BaseList<Catalog>> getCataLog(Map<String, Object> params);
+
+    //获取bible分类列表
+    Observable<BaseList<Bible>> getArticle(Map<String, Object> params);
 
 }

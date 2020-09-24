@@ -1,20 +1,14 @@
 package com.tbs.trimplus.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.text.TextUtils;
 import android.widget.Toast;
 
-import androidx.core.view.ViewCompat;
-
-import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.module.login.bean.User;
+import com.tbs.trimplus.module.user.bean.City;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -116,4 +110,28 @@ public class AppUtil {
         }
         return versionName;
     }
+
+
+    public static void setCity(Context context, String city) {
+        if (!TextUtils.isEmpty(city)) {
+            if (city.contains("市") || city.contains("县")) {
+                city = city.substring(0, city.length() - 1);
+            }
+        }
+        CacheUtil.putString(context, Constant.CITY_PREFERENCE, Constant.CITY, city);
+    }
+
+    public static String getCity(Context context) {
+        return CacheUtil.getString(context, Constant.CITY_PREFERENCE, Constant.CITY);
+    }
+
+    public static void setCityJson(Context context, String cityJson) {
+        CacheUtil.putString(context, Constant.CITY_PREFERENCE, Constant.CITYJSON, cityJson);
+    }
+
+    public static String getCityJson(Context context) {
+        return CacheUtil.getString(context, Constant.CITY_PREFERENCE, Constant.CITYJSON);
+    }
+
+
 }
