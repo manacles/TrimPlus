@@ -14,6 +14,8 @@ import com.tbs.trimplus.module.apimodel.Model;
 import com.tbs.trimplus.module.bible.presenter.impl.GetCataLogPresenter;
 import com.tbs.trimplus.module.main.activity.MainActivity;
 import com.tbs.trimplus.utils.AppUtil;
+import com.tbs.trimplus.utils.CacheUtil;
+import com.tbs.trimplus.utils.Constant;
 
 import java.util.HashMap;
 
@@ -26,7 +28,9 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        setBibleCatalog();
+        if (CacheUtil.getString(this, Constant.BIBLE_CATALOG,"mCatalog").equals("")){
+            setBibleCatalog();
+        }
 
         new Handler(Looper.myLooper()).postDelayed(new Runnable() {
             @Override

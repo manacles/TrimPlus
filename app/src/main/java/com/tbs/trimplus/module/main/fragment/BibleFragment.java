@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.alibaba.fastjson.JSON;
@@ -57,11 +58,6 @@ public class BibleFragment extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         String catalogStr = CacheUtil.getString(context, Constant.BIBLE_CATALOG, "mCatalog");
         if (catalogStr.equals("")) {
             if (NetUtil.isNetAvailable(context)) {
@@ -78,14 +74,7 @@ public class BibleFragment extends BaseFragment {
     }
 
     private void showData() {
-        String catalogStr = CacheUtil.getString(context, Constant.BIBLE_CATALOG, "mCatalog");
-        ArrayList<Catalog> catalogs = (ArrayList<Catalog>) JSONObject.parseArray(catalogStr, Catalog.class);
-
-        if (catalogs == null || catalogs.size() <= 0) {
-            return;
-        }
-
-        selectedCatalogs = CatalogManage.getSelectedCatalog(catalogs, true);
+        selectedCatalogs = CatalogManage.getSelectedCatalog(context, true);
 
         if (selectedCatalogs != null && selectedCatalogs.size() > 0) {
             //设置ViewPager的适配器
@@ -113,7 +102,7 @@ public class BibleFragment extends BaseFragment {
             case R.id.et_bible_search:
                 break;
             case R.id.ll_bible_type:
-                startActivity(new Intent(context, CatalogActivity.class));
+                startActivityForResult(new Intent(context, CatalogActivity.class), 123);
                 break;
         }
     }
@@ -135,4 +124,14 @@ public class BibleFragment extends BaseFragment {
         }
     };
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 123) {
+            if (resultCode == 321) {
+                //如果修改了频道，bible页面数据刷新
+                showData();
+            }
+        }
+    }
 }

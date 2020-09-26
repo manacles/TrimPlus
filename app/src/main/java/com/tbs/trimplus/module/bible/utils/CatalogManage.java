@@ -3,6 +3,7 @@ package com.tbs.trimplus.module.bible.utils;
 import android.content.Context;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.utils.CacheUtil;
 import com.tbs.trimplus.utils.Constant;
@@ -25,7 +26,15 @@ public class CatalogManage {
     }
 
     //获取勾选/未勾选的Catalog
-    public static ArrayList<Catalog> getSelectedCatalog(ArrayList<Catalog> catalogs, boolean isSelected) {
+    public static ArrayList<Catalog> getSelectedCatalog(Context context, boolean isSelected) {
+
+        String catalogStr = CacheUtil.getString(context, Constant.BIBLE_CATALOG, "mCatalog");
+        ArrayList<Catalog> catalogs = (ArrayList<Catalog>) JSONObject.parseArray(catalogStr, Catalog.class);
+
+        if (catalogs == null || catalogs.size() <= 0) {
+            return null;
+        }
+
         ArrayList<Catalog> selectedCatalogs = new ArrayList<>();
         for (int i = 0; i < catalogs.size(); i++) {
             Catalog catalog = catalogs.get(i);
