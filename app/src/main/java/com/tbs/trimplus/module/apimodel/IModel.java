@@ -4,6 +4,7 @@ package com.tbs.trimplus.module.apimodel;
 import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
+import com.tbs.trimplus.module.bible.bean.BibleDetail;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
@@ -55,5 +56,20 @@ public interface IModel {
 
     //获取bible分类列表
     Observable<BaseList<Bible>> getArticle(Map<String, Object> params);
+
+    //记录bible浏览数
+    Observable<BaseObject> recordViewCount(Map<String, Object> params);
+
+    //获取bible详情数据
+    Observable<BaseObject<BibleDetail>> getArticleDetail(Map<String, Object> params);
+
+    //关注作者
+    Observable<BaseObject> followAuthor(Map<String, Object> params);
+
+    //bible详情页点赞
+    Observable<BaseObject> likeArticle(Map<String, Object> params);
+
+    //bible详情页收藏
+    Observable<BaseObject> collectArticle(Map<String, Object> params);
 
 }

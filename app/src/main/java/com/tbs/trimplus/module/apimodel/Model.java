@@ -4,6 +4,7 @@ import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.api.Api;
+import com.tbs.trimplus.module.bible.bean.BibleDetail;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
@@ -118,5 +119,40 @@ public class Model implements IModel {
     public Observable<BaseList<Bible>> getArticle(Map<String, Object> params) {
         api = ApiInstance();
         return api.getArticle(params);
+    }
+
+    //记录bible浏览数
+    @Override
+    public Observable<BaseObject> recordViewCount(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.recordViewCount(params);
+    }
+
+    //获取bible详情数据
+    @Override
+    public Observable<BaseObject<BibleDetail>> getArticleDetail(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getArticleDetail(params);
+    }
+
+    //关注作者
+    @Override
+    public Observable<BaseObject> followAuthor(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.followAuthor(params);
+    }
+
+    //bible详情页点赞
+    @Override
+    public Observable<BaseObject> likeArticle(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.likeArticle(params);
+    }
+
+    //bible详情页收藏
+    @Override
+    public Observable<BaseObject> collectArticle(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.collectArticle(params);
     }
 }

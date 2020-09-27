@@ -4,6 +4,7 @@ package com.tbs.trimplus.module.api;
 import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
+import com.tbs.trimplus.module.bible.bean.BibleDetail;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
@@ -113,6 +114,41 @@ public interface Api {
     @FormUrlEncoded
     @POST("zapp/DecorateBook/get_article")
     Observable<BaseList<Bible>> getArticle(@FieldMap Map<String, Object> params);
+
+    /**
+     * 记录bible文章浏览数
+     */
+    @FormUrlEncoded
+    @POST("zapp/DecorateBook/record_view_count")
+    Observable<BaseObject> recordViewCount(@FieldMap Map<String, Object> params);
+
+    /**
+     * 获取bible详情数据
+     */
+    @FormUrlEncoded
+    @POST("zapp/DecorateBook/article_detail")
+    Observable<BaseObject<BibleDetail>> getArticleDetail(@FieldMap Map<String, Object> params);
+
+    /**
+     * 关注作者
+     */
+    @FormUrlEncoded
+    @POST("zapp/DecorateBook/follow")
+    Observable<BaseObject> followAuthor(@FieldMap Map<String, Object> params);
+
+    /**
+     * bible详情页点赞
+     */
+    @FormUrlEncoded
+    @POST("zapp/DecorateBook/like")
+    Observable<BaseObject> likeArticle(@FieldMap Map<String, Object> params);
+
+    /**
+     * bible详情页收藏
+     */
+    @FormUrlEncoded
+    @POST("zapp/DecorateBook/collect")
+    Observable<BaseObject> collectArticle(@FieldMap Map<String, Object> params);
 
     /*get和post两种请求写法
      */

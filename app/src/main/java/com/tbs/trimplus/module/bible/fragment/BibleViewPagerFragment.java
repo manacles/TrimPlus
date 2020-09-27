@@ -1,6 +1,7 @@
 package com.tbs.trimplus.module.bible.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseFragment;
 import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.module.apimodel.Model;
+import com.tbs.trimplus.module.bible.activity.BibleDetailActivity;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.bible.presenter.impl.GetArticlePresenter;
 import com.tbs.trimplus.module.bible.view.IgetArticleView;
@@ -85,7 +87,7 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
 
     private void getArticleRequest(int mpage) {
         swiperefreshlayout.setRefreshing(false);
-        if (adapter==null){
+        if (adapter == null) {
             loadingLayout.setVisibility(View.VISIBLE);
         }
 
@@ -138,7 +140,7 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
             ivDataEmpty.setVisibility(View.VISIBLE);
 //            ToastUtil.sToast(context, "请求错误！");
 
-            LogUtil.e("------"+bibleBaseList.getStatus()+"--"+bibleBaseList.getMsg()+"-----");
+            LogUtil.e("------" + bibleBaseList.getStatus() + "--" + bibleBaseList.getMsg() + "-----");
         }
     }
 
@@ -167,12 +169,15 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
     private HistoryAdapter.OnRecyclerViewItemClickListener onRecyclerViewItemClickListener = new HistoryAdapter.OnRecyclerViewItemClickListener() {
         @Override
         public void onRecyclerViewItemClick(View view, Bible data) {
-            // TODO: 2020/9/19 跳到详情页
-            ToastUtil.sToast(context, data.getTitle());
-           /* Intent intent = new Intent(HistoryActivity.this,);
-            intent.putExtra("id",data.getAid());
-            intent.putExtra("author_id",data.getAuthor_id());
-            startActivity(intent);*/
+            // 跳到详情页
+            goStartActivity(data.getAid(), data.getAuthor_id());
         }
     };
+
+    private void goStartActivity(String articleId, String authorId) {
+        Intent intent = new Intent(context, BibleDetailActivity.class);
+        intent.putExtra("id", articleId);
+        intent.putExtra("author_id", authorId);
+        startActivity(intent);
+    }
 }

@@ -66,4 +66,6 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     //tablayout
     implementation 'com.google.android.material:material:1.2.1'
+    //PhotoView
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 }
