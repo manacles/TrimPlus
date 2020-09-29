@@ -216,7 +216,13 @@ public class BibleDetailActivity extends BaseActivity implements IdoBibleDetailV
                 // TODO: 2020/9/27 文章分享
                 break;
             case R.id.iv_bible_icon:
-                // TODO: 2020/9/27 进入作者详情页
+                // 进入作者详情页
+                if (bibleDetail.getAuthor_id() != null && !TextUtils.isEmpty(bibleDetail.getAuthor_id())) {
+                    Intent intent = new Intent(this, AuthorDetailActivity.class);
+                    intent.putExtra("author_id", bibleDetail.getAuthor_id());
+                    intent.putExtra("page_num", "");
+                    startActivity(intent);
+                }
                 break;
             case R.id.tv_need_decoration:
                 // TODO: 2020/9/27 我要装修跳转页面
@@ -299,12 +305,11 @@ public class BibleDetailActivity extends BaseActivity implements IdoBibleDetailV
     public void likeArticle(BaseObject baseObject) {
         String msg = baseObject.getMsg();
         if (baseObject.getStatus().equals("200")) {
-            ivGood.setImageResource(R.drawable.good_fill);
-            tvGood.setText((Integer.parseInt(bibleDetail.getTup_count()) + 1) + "");
-
             if (msg.equals("点赞成功")) {
+                ivGood.setImageResource(R.drawable.good_fill);
                 Animation alpha = AnimationUtils.loadAnimation(this, R.anim.good_animation);
                 ivGood.startAnimation(alpha);
+                tvGood.setText((Integer.parseInt(bibleDetail.getTup_count()) + 1) + "");
             }
         }
         ToastUtil.sToast(this, msg);

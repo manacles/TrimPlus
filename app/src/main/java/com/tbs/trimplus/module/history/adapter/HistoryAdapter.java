@@ -138,8 +138,6 @@ public class HistoryAdapter extends RecyclerView.Adapter implements View.OnClick
 
     @Override
     public int getItemCount() {
-        int i = data == null ? 0 : (data.size() + 1);
-        LogUtil.e(i + "");
         return data == null ? 0 : (data.size() + 1);
     }
 

@@ -1,5 +1,6 @@
 package com.tbs.trimplus.module.history.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseActivity;
 import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.module.apimodel.Model;
+import com.tbs.trimplus.module.bible.activity.BibleDetailActivity;
 import com.tbs.trimplus.module.history.adapter.HistoryAdapter;
 import com.tbs.trimplus.module.history.presenter.impl.GetHistoryRecordPresenter;
 import com.tbs.trimplus.module.history.view.IgetHistoryRecordView;
@@ -141,12 +143,15 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
     private HistoryAdapter.OnRecyclerViewItemClickListener onRecyclerViewItemClickListener = new HistoryAdapter.OnRecyclerViewItemClickListener() {
         @Override
         public void onRecyclerViewItemClick(View view, Bible data) {
-            // TODO: 2020/9/19 跳到详情页
-            ToastUtil.sToast(HistoryActivity.this, data.getTitle());
-           /* Intent intent = new Intent(HistoryActivity.this,);
-            intent.putExtra("id",data.getAid());
-            intent.putExtra("author_id",data.getAuthor_id());
-            startActivity(intent);*/
+            // 跳到详情页
+            goStartActivity(data.getAid(), data.getAuthor_id());
         }
     };
+
+    private void goStartActivity(String articleId, String authorId) {
+        Intent intent = new Intent(this, BibleDetailActivity.class);
+        intent.putExtra("id", articleId);
+        intent.putExtra("author_id", authorId);
+        startActivity(intent);
+    }
 }

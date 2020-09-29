@@ -4,6 +4,7 @@ import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
 import com.tbs.trimplus.module.api.Api;
+import com.tbs.trimplus.module.bible.bean.Author;
 import com.tbs.trimplus.module.bible.bean.BibleDetail;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.login.bean.User;
@@ -154,5 +155,12 @@ public class Model implements IModel {
     public Observable<BaseObject> collectArticle(Map<String, Object> params) {
         api = ApiInstance();
         return api.collectArticle(params);
+    }
+
+    //获取作者详情数据
+    @Override
+    public Observable<BaseObject<Author>> getAuthorDetail(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getAuthorDetail(params);
     }
 }

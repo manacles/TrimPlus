@@ -4,6 +4,7 @@ package com.tbs.trimplus.module.apimodel;
 import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
+import com.tbs.trimplus.module.bible.bean.Author;
 import com.tbs.trimplus.module.bible.bean.BibleDetail;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.login.bean.User;
@@ -71,5 +72,8 @@ public interface IModel {
 
     //bible详情页收藏
     Observable<BaseObject> collectArticle(Map<String, Object> params);
+
+    //获取作者详情数据
+    Observable<BaseObject<Author>> getAuthorDetail(Map<String, Object> params);
 
 }

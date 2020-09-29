@@ -4,6 +4,7 @@ package com.tbs.trimplus.module.api;
 import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.common.bean.ResultList;
+import com.tbs.trimplus.module.bible.bean.Author;
 import com.tbs.trimplus.module.bible.bean.BibleDetail;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.login.bean.User;
@@ -149,6 +150,13 @@ public interface Api {
     @FormUrlEncoded
     @POST("zapp/DecorateBook/collect")
     Observable<BaseObject> collectArticle(@FieldMap Map<String, Object> params);
+
+    /**
+     * 获取作者详情数据
+     */
+    @FormUrlEncoded
+    @POST("zapp/index/author_detail")
+    Observable<BaseObject<Author>> getAuthorDetail(@FieldMap Map<String, Object> params);
 
     /*get和post两种请求写法
      */
