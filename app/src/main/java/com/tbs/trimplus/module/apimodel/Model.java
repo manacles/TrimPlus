@@ -122,6 +122,15 @@ public class Model implements IModel {
         return api.getArticle(params);
     }
 
+    //获取bible搜索列表
+
+
+    @Override
+    public Observable<BaseList<Bible>> getSearchArticle(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getSearchArticle(params);
+    }
+
     //记录bible浏览数
     @Override
     public Observable<BaseObject> recordViewCount(Map<String, Object> params) {
@@ -162,5 +171,12 @@ public class Model implements IModel {
     public Observable<BaseObject<Author>> getAuthorDetail(Map<String, Object> params) {
         api = ApiInstance();
         return api.getAuthorDetail(params);
+    }
+
+    //获取搜索关键词
+    @Override
+    public Observable<BaseList<Map>> getKeyWord(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getKeyWord(params);
     }
 }

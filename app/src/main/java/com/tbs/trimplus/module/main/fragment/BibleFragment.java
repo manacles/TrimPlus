@@ -18,6 +18,7 @@ import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseFragment;
 import com.tbs.trimplus.module.apimodel.Model;
 import com.tbs.trimplus.module.bible.activity.CatalogActivity;
+import com.tbs.trimplus.module.bible.activity.SearchActivity;
 import com.tbs.trimplus.module.bible.adapter.BibleViewPagerAdapter;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.bible.presenter.impl.GetCataLogPresenter;
@@ -100,6 +101,7 @@ public class BibleFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.et_bible_search:
+                startActivity(new Intent(context, SearchActivity.class));
                 break;
             case R.id.ll_bible_type:
                 startActivityForResult(new Intent(context, CatalogActivity.class), 123);

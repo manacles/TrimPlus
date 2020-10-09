@@ -1,6 +1,7 @@
 package com.tbs.trimplus.module.main.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tbs.trimplus.R;
+import com.tbs.trimplus.module.bible.activity.AuthorDetailActivity;
+import com.tbs.trimplus.module.bible.adapter.AuthorDetailAdapter;
 import com.tbs.trimplus.module.main.bean.Home;
 import com.tbs.trimplus.utils.GlideUtil;
 
@@ -61,6 +64,17 @@ public class HomeAuthorAdapter extends RecyclerView.Adapter {
         } else if (position == 7) {
             viewHolder.iv_rank.setBackgroundResource(R.drawable.img8);
         }
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, AuthorDetailActivity.class);
+                intent.putExtra("author_id", data.get(position).getUid());
+                intent.putExtra("page_num", data.get(position).getArticle_count());
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

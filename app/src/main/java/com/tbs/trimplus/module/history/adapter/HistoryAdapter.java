@@ -1,6 +1,9 @@
 package com.tbs.trimplus.module.history.adapter;
 
 import android.content.Context;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +14,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.R;
 import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.utils.GlideUtil;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -37,6 +41,22 @@ public class HistoryAdapter extends RecyclerView.Adapter implements View.OnClick
     private View footView;
     private LinearLayout footLayout;
 
+    private String searchWord;
+
+    public void setSearchWord(String searchWord) {
+        this.searchWord = searchWord;
+    }
+
+    private Object modifyTitle(String title) {
+        if (!TextUtils.isEmpty(searchWord)) {
+            if (title != null && !title.isEmpty() && title.contains(searchWord)) {
+                String head = title.substring(0, title.indexOf(searchWord));
+                String foot = title.substring(head.length() + searchWord.length());
+                return Html.fromHtml(head + "<font color=\"#FC4141\">" + searchWord + "</font>" + foot);
+            }
+        }
+        return title;
+    }
 
     public HistoryAdapter(Context context, ArrayList<Bible> bibleArrayList) {
         this.context = context;
@@ -80,7 +100,7 @@ public class HistoryAdapter extends RecyclerView.Adapter implements View.OnClick
             if (holder instanceof RightHolder && type.equals("1")) {
                 RightHolder rightHolder = (RightHolder) holder;
 
-                rightHolder.tv_title.setText(bible.getTitle());
+                rightHolder.tv_title.setText((CharSequence) modifyTitle(bible.getTitle()));
                 rightHolder.tv_author_name.setText(bible.getAuthor_name());
                 rightHolder.tv_time.setText(bible.getTime());
                 rightHolder.tv_view_count.setText(bible.getView_count());
@@ -95,7 +115,7 @@ public class HistoryAdapter extends RecyclerView.Adapter implements View.OnClick
             } else if (holder instanceof ThreeHolder && type.equals("2")) {
                 ThreeHolder threeHolder = (ThreeHolder) holder;
 
-                threeHolder.tv_title.setText(bible.getTitle());
+                threeHolder.tv_title.setText((CharSequence) modifyTitle(bible.getTitle()));
                 threeHolder.tv_author_name.setText(bible.getAuthor_name());
                 threeHolder.tv_time.setText(bible.getTime());
                 threeHolder.tv_view_count.setText(bible.getView_count());
@@ -120,7 +140,7 @@ public class HistoryAdapter extends RecyclerView.Adapter implements View.OnClick
             } else if (holder instanceof BigHolder && type.equals("3")) {
                 BigHolder bigHolder = (BigHolder) holder;
 
-                bigHolder.tv_title.setText(bible.getTitle());
+                bigHolder.tv_title.setText((CharSequence) modifyTitle(bible.getTitle()));
                 bigHolder.tv_author_name.setText(bible.getAuthor_name());
                 bigHolder.tv_time.setText(bible.getTime());
                 bigHolder.tv_view_count.setText(bible.getView_count());

@@ -135,11 +135,15 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
                 adapter.notifyDataSetChanged();
             }
         } else if (bibleBaseList.getStatus().equals("201")) {
-            ToastUtil.sToast(context, "没有更多数据！");
+            if (page == 1) {
+                ivDataEmpty.setVisibility(View.VISIBLE);
+            } else {
+                ToastUtil.sToast(context, "没有更多数据！");
+            }
         } else {
-            ivDataEmpty.setVisibility(View.VISIBLE);
-//            ToastUtil.sToast(context, "请求错误！");
-
+            if (page==1){
+                ivDataEmpty.setVisibility(View.VISIBLE);
+            }
             LogUtil.e("------" + bibleBaseList.getStatus() + "--" + bibleBaseList.getMsg() + "-----");
         }
     }

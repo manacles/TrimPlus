@@ -117,6 +117,13 @@ public interface Api {
     Observable<BaseList<Bible>> getArticle(@FieldMap Map<String, Object> params);
 
     /**
+     * 获取bilbe搜索列表
+     */
+    @FormUrlEncoded
+    @POST("zapp/DecorateBook/get_article_by_title")
+    Observable<BaseList<Bible>> getSearchArticle(@FieldMap Map<String, Object> params);
+
+    /**
      * 记录bible文章浏览数
      */
     @FormUrlEncoded
@@ -157,6 +164,13 @@ public interface Api {
     @FormUrlEncoded
     @POST("zapp/index/author_detail")
     Observable<BaseObject<Author>> getAuthorDetail(@FieldMap Map<String, Object> params);
+
+    /**
+     * 搜索推荐关键词
+     */
+    @FormUrlEncoded
+    @POST("zapp/DecorateBook/get_key_word")
+    Observable<BaseList<Map>> getKeyWord(@FieldMap Map<String, Object> params);
 
     /*get和post两种请求写法
      */

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/icon_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.bible.activity.AuthorDetailActivity"></activity>
+        <activity android:name=".module.bible.activity.SearchActivity"></activity>
+        <activity android:name=".module.bible.activity.AuthorDetailActivity" />
         <activity android:name=".module.bible.activity.BibleDetailActivity" />
         <activity android:name=".module.bible.activity.CatalogActivity" />
         <activity android:name=".module.setting.activity.SettingActivity" />

@@ -58,6 +58,9 @@ public interface IModel {
     //获取bible分类列表
     Observable<BaseList<Bible>> getArticle(Map<String, Object> params);
 
+    //获取bible搜索列表
+    Observable<BaseList<Bible>> getSearchArticle(Map<String, Object> params);
+
     //记录bible浏览数
     Observable<BaseObject> recordViewCount(Map<String, Object> params);
 
@@ -75,5 +78,8 @@ public interface IModel {
 
     //获取作者详情数据
     Observable<BaseObject<Author>> getAuthorDetail(Map<String, Object> params);
+
+    //获取搜索推荐关键词
+    Observable<BaseList<Map>> getKeyWord(Map<String, Object> params);
 
 }

@@ -27,9 +27,10 @@
             android:focusableInTouchMode="false"
             android:hint="厨房改造装修注意事项"
             android:paddingStart="16dp"
-            android:paddingTop="10dp"
+            android:textSize="14sp"
+            android:paddingTop="5dp"
             android:paddingEnd="5dp"
-            android:paddingBottom="10dp" />
+            android:paddingBottom="5dp" />
 
         <LinearLayout
             android:id="@+id/ll_bible_type"
@@ -41,8 +42,8 @@
             android:paddingStart="5dp">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginEnd="3dp"
                 android:src="@drawable/settings" />
 
@@ -52,7 +53,7 @@
                 android:gravity="center"
                 android:text="频道"
                 android:textColor="#AAB0C0"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 
