@@ -11,7 +11,9 @@ import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.module.main.bean.Home;
 import com.tbs.trimplus.module.main.bean.Mine;
+import com.tbs.trimplus.module.user.bean.AuthorList;
 import com.tbs.trimplus.module.user.bean.City;
+import com.tbs.trimplus.module.user.bean.Collect;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 import com.tbs.trimplus.utils.ApiUtil;
 
@@ -178,5 +180,33 @@ public class Model implements IModel {
     public Observable<BaseList<Map>> getKeyWord(Map<String, Object> params) {
         api = ApiInstance();
         return api.getKeyWord(params);
+    }
+
+    //关注列表
+    @Override
+    public Observable<BaseList<AuthorList>> getMyAttention(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getMyAttention(params);
+    }
+
+    //收藏列表
+    @Override
+    public Observable<BaseList<Collect>> getMyCollect(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getMyCollect(params);
+    }
+
+    //删除选中收藏
+    @Override
+    public Observable<BaseObject> delCheckCollect(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.delCheckCollect(params);
+    }
+
+    //删除所有收藏
+    @Override
+    public Observable<BaseObject> delAllCollect(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.delAllCollect(params);
     }
 }

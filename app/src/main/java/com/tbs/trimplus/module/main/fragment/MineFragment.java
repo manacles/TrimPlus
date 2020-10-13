@@ -17,11 +17,13 @@ import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseFragment;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.module.apimodel.Model;
+import com.tbs.trimplus.module.history.activity.HistoryActivity;
 import com.tbs.trimplus.module.login.activity.LoginActivity;
 import com.tbs.trimplus.module.main.adapter.RecyclerViewMineAdapter;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.main.presenter.impl.GetMineDataPresenter;
 import com.tbs.trimplus.module.main.view.IgetMineDataView;
+import com.tbs.trimplus.module.user.activity.MyCollectActivity;
 import com.tbs.trimplus.module.user.activity.UserInfoActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.CacheUtil;
@@ -87,6 +89,16 @@ public class MineFragment extends BaseFragment implements IgetMineDataView {
         super.onResume();
         //初始化用户数据
         initUserInfo();
+        LogUtil.e("------onResume-------");
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            initUserInfo();
+            LogUtil.e("------onHiddenChanged-------");
+        }
     }
 
     private void initUserInfo() {
@@ -96,6 +108,8 @@ public class MineFragment extends BaseFragment implements IgetMineDataView {
             String icon = CacheUtil.getString(context, Constant.USER_INFO, "icon");
             String name = CacheUtil.getString(context, Constant.USER_INFO, "name");
             String uid = CacheUtil.getString(context, Constant.USER_INFO, "uid");
+
+            LogUtil.e("------uid---" + uid + "------------");
 
             llMineUserNum.setVisibility(View.VISIBLE);
             tvMineName.setText(name);
@@ -136,8 +150,10 @@ public class MineFragment extends BaseFragment implements IgetMineDataView {
                 }
                 break;
             case R.id.ll_mine_scan:
+                startActivity(new Intent(context, HistoryActivity.class));
                 break;
             case R.id.ll_mine_collect:
+                startActivity(new Intent(context, MyCollectActivity.class));
                 break;
             case R.id.ll_mine_like:
                 break;

@@ -9,6 +9,8 @@
 
     <include layout="@layout/layout_toolbar" />
 
+    <include layout="@layout/loading_progressbar" />
+
     <ImageView
         android:id="@+id/iv_data_empty"
         android:layout_width="wrap_content"

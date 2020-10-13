@@ -87,7 +87,6 @@ public class HomeFragment extends BaseFragment implements IgetIndexDataView {
     @Override
     public void getIndexData(BaseObject<Home> homeBaseObject) {
         if (homeBaseObject.getStatus().equals("200")) {
-            ToastUtil.sToast(context, "主页数据获取成功");
             LogUtil.e(homeBaseObject.toString());
 
             carouselBeanArrayList = homeBaseObject.getData().getCarousel();

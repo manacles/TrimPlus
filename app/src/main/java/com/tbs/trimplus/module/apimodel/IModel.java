@@ -11,7 +11,9 @@ import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.module.main.bean.Home;
 import com.tbs.trimplus.module.main.bean.Mine;
+import com.tbs.trimplus.module.user.bean.AuthorList;
 import com.tbs.trimplus.module.user.bean.City;
+import com.tbs.trimplus.module.user.bean.Collect;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 
 import java.util.Map;
@@ -81,5 +83,17 @@ public interface IModel {
 
     //获取搜索推荐关键词
     Observable<BaseList<Map>> getKeyWord(Map<String, Object> params);
+
+    //获取关注人列表
+    Observable<BaseList<AuthorList>> getMyAttention(Map<String, Object> params);
+
+    //获取收藏列表
+    Observable<BaseList<Collect>> getMyCollect(Map<String, Object> params);
+
+    //删除选中收藏
+    Observable<BaseObject> delCheckCollect(Map<String, Object> params);
+
+    //删除所有收藏
+    Observable<BaseObject> delAllCollect(Map<String, Object> params);
 
 }

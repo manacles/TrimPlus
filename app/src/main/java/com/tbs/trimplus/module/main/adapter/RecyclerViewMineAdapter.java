@@ -20,6 +20,7 @@ import com.tbs.trimplus.module.login.activity.LoginActivity;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.setting.activity.FeedBackActivity;
 import com.tbs.trimplus.module.setting.activity.SettingActivity;
+import com.tbs.trimplus.module.user.activity.MyAttentionActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.Constant;
 import com.tbs.trimplus.utils.ToastUtil;
@@ -203,7 +204,7 @@ public class RecyclerViewMineAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     if (AppUtil.isLogin(context)) {
                         //已经登录状态
-                        ToastUtil.sToast(context, "我的关注");
+                        context.startActivity(new Intent(context, MyAttentionActivity.class));
                     } else {
                         //未登录
                         context.startActivity(new Intent(context, LoginActivity.class));

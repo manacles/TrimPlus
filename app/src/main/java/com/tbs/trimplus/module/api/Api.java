@@ -11,7 +11,9 @@ import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.main.bean.Bible;
 import com.tbs.trimplus.module.main.bean.Home;
 import com.tbs.trimplus.module.main.bean.Mine;
+import com.tbs.trimplus.module.user.bean.AuthorList;
 import com.tbs.trimplus.module.user.bean.City;
+import com.tbs.trimplus.module.user.bean.Collect;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 
 import java.util.Map;
@@ -171,6 +173,34 @@ public interface Api {
     @FormUrlEncoded
     @POST("zapp/DecorateBook/get_key_word")
     Observable<BaseList<Map>> getKeyWord(@FieldMap Map<String, Object> params);
+
+    /**
+     * 关注人列表数据
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/my_attention")
+    Observable<BaseList<AuthorList>> getMyAttention(@FieldMap Map<String, Object> params);
+
+    /**
+     * 收藏列表数据
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/my_collect")
+    Observable<BaseList<Collect>> getMyCollect(@FieldMap Map<String, Object> params);
+
+    /**
+     * 删除选中的收藏
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/del_collect")
+    Observable<BaseObject> delCheckCollect(@FieldMap Map<String, Object> params);
+
+    /**
+     * 删除所有的收藏
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/batch_del_collect")
+    Observable<BaseObject> delAllCollect(@FieldMap Map<String, Object> params);
 
     /*get和post两种请求写法
      */

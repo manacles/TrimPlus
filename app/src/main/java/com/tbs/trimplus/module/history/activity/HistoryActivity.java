@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -24,7 +25,6 @@ import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.CacheUtil;
 import com.tbs.trimplus.utils.Constant;
 import com.tbs.trimplus.utils.ToastUtil;
-import com.tbs.trimplus.view.CustomWaitDialog;
 import com.tbs.trimplus.view.RecyclerViewOnUpScrollListener;
 
 import java.util.ArrayList;
@@ -45,6 +45,8 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
     RecyclerView recyclerview;
     @BindView(R.id.swiperefreshlayout)
     SwipeRefreshLayout swiperefreshlayout;
+    @BindView(R.id.loading_layout)
+    RelativeLayout loadingLayout;
 
     private int page = 1;
     private ArrayList<Bible> data = new ArrayList<>();
@@ -52,8 +54,6 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
     private HistoryAdapter adapter;
 
     private GetHistoryRecordPresenter getHistoryRecordPresenter;
-
-    private CustomWaitDialog customWaitDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,6 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
 
         toolbarTitle.setText("历史记录");
         initToolbar(toolbar);
-        customWaitDialog = new CustomWaitDialog(this);
 
         recyclerview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
@@ -79,7 +78,9 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
     }
 
     private void getHistoryRecordRequest(int mpage) {
-        customWaitDialog.show();
+        if (adapter == null) {
+            loadingLayout.setVisibility(View.VISIBLE);
+        }
         swiperefreshlayout.setRefreshing(false);
         String uid = CacheUtil.getString(this, Constant.USER_INFO, "uid");
         HashMap<String, Object> params = new HashMap<>();
@@ -92,7 +93,7 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
 
     @Override
     public void getHistoryRecord(BaseList<Bible> bibleBaseList) {
-        customWaitDialog.dismiss();
+        loadingLayout.setVisibility(View.GONE);
         if (adapter != null) {
             adapter.hideFootView();
         }
