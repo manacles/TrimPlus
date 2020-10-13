@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/icon_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.user.activity.MyCollectActivity"></activity>
+        <activity android:name=".module.user.activity.MyLikeActivity"></activity>
+        <activity android:name=".module.user.activity.MyCollectActivity" />
         <activity android:name=".module.user.activity.MyAttentionActivity" />
         <activity android:name=".module.bible.activity.SearchActivity" />
         <activity android:name=".module.bible.activity.AuthorDetailActivity" />

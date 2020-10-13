@@ -18,10 +18,10 @@ import com.tbs.trimplus.base.BaseActivity;
 import com.tbs.trimplus.common.bean.BaseList;
 import com.tbs.trimplus.common.bean.BaseObject;
 import com.tbs.trimplus.module.apimodel.Model;
-import com.tbs.trimplus.module.user.adapter.CollectAdapter;
-import com.tbs.trimplus.module.user.bean.Collect;
-import com.tbs.trimplus.module.user.presenter.impl.GetMyCollectPresenter;
-import com.tbs.trimplus.module.user.view.IgetMyCollectView;
+import com.tbs.trimplus.module.user.adapter.LikeAdapter;
+import com.tbs.trimplus.module.user.bean.Like;
+import com.tbs.trimplus.module.user.presenter.impl.GetMyLikePresenter;
+import com.tbs.trimplus.module.user.view.IgetMyLikeView;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.CacheUtil;
 import com.tbs.trimplus.utils.Constant;
@@ -36,7 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MyCollectActivity extends BaseActivity implements IgetMyCollectView {
+public class MyLikeActivity extends BaseActivity implements IgetMyLikeView {
 
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
@@ -59,9 +59,9 @@ public class MyCollectActivity extends BaseActivity implements IgetMyCollectView
     @BindView(R.id.rl_del)
     RelativeLayout rlDel;
 
-    private CollectAdapter adapter;
+    private LikeAdapter adapter;
 
-    private GetMyCollectPresenter getMyCollectPresenter;
+    private GetMyLikePresenter getMyLikePresenter;
     private int page = 1;
 
     private String uid;
@@ -71,22 +71,22 @@ public class MyCollectActivity extends BaseActivity implements IgetMyCollectView
 
     private List<String> ids = new ArrayList<>();
     private List<String> allId = new ArrayList<>();
-    private ArrayList<Collect> collects;
+    private ArrayList<Like> Likes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mycollect);
+        setContentView(R.layout.activity_my_like);
         ButterKnife.bind(this);
 
         initToolbar(toolbar);
-        toolbarTitle.setText("我的收藏");
+        toolbarTitle.setText("我的点赞");
         toolbarRight.setText("管理");
 
-        getMyCollectPresenter = new GetMyCollectPresenter(new Model(), this);
+        getMyLikePresenter = new GetMyLikePresenter(new Model(), this);
         recyclerview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
-        getMyCollectRequest();
+        getMyLikeRequest();
 
         initListener();
 
@@ -97,14 +97,14 @@ public class MyCollectActivity extends BaseActivity implements IgetMyCollectView
         page = 1;
         ids.clear();
         allId.clear();
-        collects.clear();
+        Likes.clear();
 
         isDel = false;
         isSelectedAll = false;
 
         toolbarRight.setText("管理");
         rlDel.setVisibility(View.GONE);
-        getMyCollectRequest();
+        getMyLikeRequest();
     }
 
 
@@ -112,12 +112,12 @@ public class MyCollectActivity extends BaseActivity implements IgetMyCollectView
         swiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getMyCollectRequest();
+                getMyLikeRequest();
             }
         });
     }
 
-    private void getMyCollectRequest() {
+    private void getMyLikeRequest() {
         ivDataEmpty.setVisibility(View.GONE);
         swiperefreshlayout.setRefreshing(true);
 
@@ -127,25 +127,25 @@ public class MyCollectActivity extends BaseActivity implements IgetMyCollectView
         params.put("uid", uid);
         params.put("page", page);
         params.put("page_size", 500);
-        getMyCollectPresenter.getMyCollect(params);
-        LogUtil.e("--------getMyCollectRequest---------");
+        getMyLikePresenter.getMyLike(params);
+        LogUtil.e("--------getMyLikeRequest---------");
     }
 
     @Override
-    public void getMyCollect(BaseList<Collect> collectBaseList) {
+    public void getMyLike(BaseList<Like> LikeBaseList) {
         swiperefreshlayout.setRefreshing(false);
-        if (collectBaseList.getStatus().equals("200")) {
-            LogUtil.e("--------getMyCollect---------");
-            collects = collectBaseList.getData();
+        if (LikeBaseList.getStatus().equals("200")) {
+            LogUtil.e("--------getMyLike---------");
+            Likes = LikeBaseList.getData();
             //设置页面展示的所有收藏id
-            for (int i = 0; i < collects.size(); i++) {
-                allId.add(collects.get(i).getId());
+            for (int i = 0; i < Likes.size(); i++) {
+                allId.add(Likes.get(i).getId());
             }
 
-            if (collects.size() == 0) {
+            if (Likes.size() == 0) {
                 ivDataEmpty.setVisibility(View.VISIBLE);
             } else {
-                adapter = new CollectAdapter(this, collects);
+                adapter = new LikeAdapter(this, Likes);
                 recyclerview.setAdapter(adapter);
             }
         } else {
@@ -153,40 +153,40 @@ public class MyCollectActivity extends BaseActivity implements IgetMyCollectView
         }
 
         if (adapter != null) {
-            adapter.setOnItemClickListener(new CollectAdapter.OnItemClickListener() {
+            adapter.setOnItemClickListener(new LikeAdapter.OnItemClickListener() {
                 @Override
-                public void onClick(View view, Collect collect) {
-                    CollectAdapter.ViewHolder holder = (CollectAdapter.ViewHolder) view.getTag();
+                public void onClick(View view, Like Like) {
+                    LikeAdapter.ViewHolder holder = (LikeAdapter.ViewHolder) view.getTag();
                     if (isDel) {
                         //管理收藏页面
-                        if (collect.isChecked()) {
+                        if (Like.isChecked()) {
                             //选中状态下点击
-                            collect.setChecked(false);
+                            Like.setChecked(false);
                             holder.check.setImageResource(R.drawable.no_check);
 
                             //处理ids
-                            ids.remove(collect.getId());
-                            if (ids.size() < collects.size()) {
+                            ids.remove(Like.getId());
+                            if (ids.size() < Likes.size()) {
                                 tvSelectAll.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.no_check), null, null, null);
                                 isSelectedAll = false;
                             }
                         } else {
                             //非选中状态下点击
-                            collect.setChecked(true);
+                            Like.setChecked(true);
                             holder.check.setImageResource(R.drawable.check);
 
                             //处理ids
-                            if (!ids.contains(collect.getId())) {
-                                ids.add(collect.getId());
+                            if (!ids.contains(Like.getId())) {
+                                ids.add(Like.getId());
                             }
-                            if (ids.size() == collects.size()) {
+                            if (ids.size() == Likes.size()) {
                                 tvSelectAll.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.check), null, null, null);
                                 isSelectedAll = true;
                             }
                         }
                     } else {
                         // 跳到详情页
-                        holder.goStartActivity(collect.getAid(), collect.getAuthor_id());
+                        holder.goStartActivity(Like.getAid(), Like.getAuthor_id());
                     }
                 }
             });
@@ -242,22 +242,23 @@ public class MyCollectActivity extends BaseActivity implements IgetMyCollectView
 
                 break;
             case R.id.tv_del_all:
-                CustomSelectDialog deleteDialog = new CustomSelectDialog(MyCollectActivity.this,
-                        "您确定清空所有收藏吗？", 1, R.style.custom_dialog) {
+                CustomSelectDialog deleteDialog = new CustomSelectDialog(MyLikeActivity.this,
+                        "您确定清空所有点赞吗？", 1, R.style.custom_dialog) {
                     @Override
                     public void onSureClick() {
-                        delAllCollectRequest();
+                        delAllLikeRequest();
                     }
                 };
                 deleteDialog.show();
                 break;
             case R.id.tv_del:
-                delCheckCollectRequest();
+                delCheckLikeRequest();
                 break;
         }
     }
 
-    private void delCheckCollectRequest() {
+    private void delCheckLikeRequest() {
+        LogUtil.e("-------------delCheckLikeRequest---------------");
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < ids.size(); i++) {
             if (i != 0) {
@@ -276,12 +277,12 @@ public class MyCollectActivity extends BaseActivity implements IgetMyCollectView
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", AppUtil.getDateToken());
         params.put("id", idStr);
-        getMyCollectPresenter.delCheckCollect(params);
+        getMyLikePresenter.delCheckLike(params);
 
     }
 
     @Override
-    public void delCheckCollect(BaseObject baseObject) {
+    public void delCheckLike(BaseObject baseObject) {
         LogUtil.e(baseObject.toString());
         if (baseObject.getStatus().equals("200")) {
             initData();
@@ -289,18 +290,18 @@ public class MyCollectActivity extends BaseActivity implements IgetMyCollectView
         ToastUtil.sToast(this, baseObject.getMsg());
     }
 
-    private void delAllCollectRequest() {
+    private void delAllLikeRequest() {
         if (TextUtils.isEmpty(uid)) {
             return;
         }
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", AppUtil.getDateToken());
         params.put("uid", uid);
-        getMyCollectPresenter.delAllCollect(params);
+        getMyLikePresenter.delAllLike(params);
     }
 
     @Override
-    public void delAllCollect(BaseObject baseObject) {
+    public void delAllLike(BaseObject baseObject) {
         LogUtil.e(baseObject.toString());
         if (baseObject.getStatus().equals("200")) {
             initData();

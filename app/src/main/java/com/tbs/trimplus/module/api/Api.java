@@ -14,6 +14,7 @@ import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.user.bean.AuthorList;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.Collect;
+import com.tbs.trimplus.module.user.bean.Like;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 
 import java.util.Map;
@@ -201,6 +202,27 @@ public interface Api {
     @FormUrlEncoded
     @POST("zapp/myself/batch_del_collect")
     Observable<BaseObject> delAllCollect(@FieldMap Map<String, Object> params);
+
+    /**
+     * 点赞列表数据
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/my_like")
+    Observable<BaseList<Like>> getMyLike(@FieldMap Map<String, Object> params);
+
+    /**
+     * 删除选中的点赞
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/del_like")
+    Observable<BaseObject> delCheckLike(@FieldMap Map<String, Object> params);
+
+    /**
+     * 删除所有的点赞
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/batch_del_like")
+    Observable<BaseObject> delAllLike(@FieldMap Map<String, Object> params);
 
     /*get和post两种请求写法
      */

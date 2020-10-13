@@ -14,6 +14,7 @@ import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.user.bean.AuthorList;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.Collect;
+import com.tbs.trimplus.module.user.bean.Like;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 import com.tbs.trimplus.utils.ApiUtil;
 
@@ -208,5 +209,26 @@ public class Model implements IModel {
     public Observable<BaseObject> delAllCollect(Map<String, Object> params) {
         api = ApiInstance();
         return api.delAllCollect(params);
+    }
+
+    //点赞列表
+    @Override
+    public Observable<BaseList<Like>> getMyLike(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getMyLike(params);
+    }
+
+    //删除选中点赞
+    @Override
+    public Observable<BaseObject> delCheckLike(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.delCheckLike(params);
+    }
+
+    //删除所有点赞
+    @Override
+    public Observable<BaseObject> delAllLike(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.delAllLike(params);
     }
 }

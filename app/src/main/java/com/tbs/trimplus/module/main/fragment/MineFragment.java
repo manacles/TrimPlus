@@ -1,8 +1,6 @@
 package com.tbs.trimplus.module.main.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +22,7 @@ import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.main.presenter.impl.GetMineDataPresenter;
 import com.tbs.trimplus.module.main.view.IgetMineDataView;
 import com.tbs.trimplus.module.user.activity.MyCollectActivity;
+import com.tbs.trimplus.module.user.activity.MyLikeActivity;
 import com.tbs.trimplus.module.user.activity.UserInfoActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.CacheUtil;
@@ -32,7 +31,6 @@ import com.tbs.trimplus.utils.GlideUtil;
 import com.tbs.trimplus.utils.ToastUtil;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -156,6 +154,7 @@ public class MineFragment extends BaseFragment implements IgetMineDataView {
                 startActivity(new Intent(context, MyCollectActivity.class));
                 break;
             case R.id.ll_mine_like:
+                startActivity(new Intent(context, MyLikeActivity.class));
                 break;
         }
     }

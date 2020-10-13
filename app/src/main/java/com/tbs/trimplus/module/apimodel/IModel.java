@@ -14,6 +14,7 @@ import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.user.bean.AuthorList;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.Collect;
+import com.tbs.trimplus.module.user.bean.Like;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 
 import java.util.Map;
@@ -95,5 +96,14 @@ public interface IModel {
 
     //删除所有收藏
     Observable<BaseObject> delAllCollect(Map<String, Object> params);
+
+    //获取点赞列表
+    Observable<BaseList<Like>> getMyLike(Map<String, Object> params);
+
+    //删除选中点赞
+    Observable<BaseObject> delCheckLike(Map<String, Object> params);
+
+    //删除所有点赞
+    Observable<BaseObject> delAllLike(Map<String, Object> params);
 
 }
