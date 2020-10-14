@@ -15,6 +15,7 @@ import com.tbs.trimplus.module.user.bean.AuthorList;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.Collect;
 import com.tbs.trimplus.module.user.bean.Like;
+import com.tbs.trimplus.module.user.bean.Message;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 
 import java.util.Map;
@@ -223,6 +224,13 @@ public interface Api {
     @FormUrlEncoded
     @POST("zapp/myself/batch_del_like")
     Observable<BaseObject> delAllLike(@FieldMap Map<String, Object> params);
+
+    /**
+     * 消息中心数据
+     */
+    @FormUrlEncoded
+    @POST("tapp/mt/getPushLog")
+    Observable<Message> getPushLog(@FieldMap Map<String, Object> params);
 
     /*get和post两种请求写法
      */

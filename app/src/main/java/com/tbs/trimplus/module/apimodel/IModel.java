@@ -15,6 +15,7 @@ import com.tbs.trimplus.module.user.bean.AuthorList;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.Collect;
 import com.tbs.trimplus.module.user.bean.Like;
+import com.tbs.trimplus.module.user.bean.Message;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 
 import java.util.Map;
@@ -105,5 +106,8 @@ public interface IModel {
 
     //删除所有点赞
     Observable<BaseObject> delAllLike(Map<String, Object> params);
+
+    //获取消息中心数据
+    Observable<Message> getPushLog(Map<String, Object> params);
 
 }

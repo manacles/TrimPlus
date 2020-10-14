@@ -20,6 +20,7 @@ import com.tbs.trimplus.module.login.activity.LoginActivity;
 import com.tbs.trimplus.module.main.bean.Mine;
 import com.tbs.trimplus.module.setting.activity.FeedBackActivity;
 import com.tbs.trimplus.module.setting.activity.SettingActivity;
+import com.tbs.trimplus.module.user.activity.MessageCenterActivity;
 import com.tbs.trimplus.module.user.activity.MyAttentionActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.Constant;
@@ -157,8 +158,7 @@ public class RecyclerViewMineAdapter extends RecyclerView.Adapter {
                             }
                             break;
                         case 3:
-                            // TODO: 2020/9/19 跳转到消息中心列表
-//                            context.startActivity(new Intent(context, MessageCenterActivity.class));
+                            context.startActivity(new Intent(context, MessageCenterActivity.class));
                             break;
                         case 4:
                             context.startActivity(new Intent(context, FeedBackActivity.class));

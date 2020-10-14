@@ -15,6 +15,7 @@ import com.tbs.trimplus.module.user.bean.AuthorList;
 import com.tbs.trimplus.module.user.bean.City;
 import com.tbs.trimplus.module.user.bean.Collect;
 import com.tbs.trimplus.module.user.bean.Like;
+import com.tbs.trimplus.module.user.bean.Message;
 import com.tbs.trimplus.module.user.bean.UserInfo;
 import com.tbs.trimplus.utils.ApiUtil;
 
@@ -230,5 +231,12 @@ public class Model implements IModel {
     public Observable<BaseObject> delAllLike(Map<String, Object> params) {
         api = ApiInstance();
         return api.delAllLike(params);
+    }
+
+    //获取消息中心数据
+    @Override
+    public Observable<Message> getPushLog(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.getPushLog(params);
     }
 }
