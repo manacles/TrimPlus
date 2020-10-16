@@ -68,4 +68,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     //PhotoView
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    //PictureSelector图片选择框架
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.9'
 }

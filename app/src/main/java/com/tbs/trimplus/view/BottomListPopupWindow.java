@@ -3,6 +3,7 @@ package com.tbs.trimplus.view;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,12 +51,17 @@ public class BottomListPopupWindow extends PopupWindow {
         listView = view.findViewById(R.id.listview);
 
         initBackground();
-        initListener();
         initData();
+
+        initListener();
     }
 
     private void initData() {
-        if (title == null || title.equals("")) popTitle.setText(title);
+        if (TextUtils.isEmpty(title)) {
+            popTitle.setHeight(2);
+        } else {
+            popTitle.setText(title);
+        }
     }
 
     private void initListener() {
@@ -141,12 +147,16 @@ public class BottomListPopupWindow extends PopupWindow {
                 convertView = LayoutInflater.from(context).inflate(R.layout.item_popupwindow, null);
                 viewHolder = new ViewHolder();
                 viewHolder.textView = convertView.findViewById(R.id.pop_item);
+                viewHolder.pop_line = convertView.findViewById(R.id.pop_line);
 
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             viewHolder.textView.setText(data[position]);
+            if (TextUtils.isEmpty(title) && position == 0) {
+                viewHolder.pop_line.setVisibility(View.GONE);
+            }
             return convertView;
         }
 
@@ -154,6 +164,7 @@ public class BottomListPopupWindow extends PopupWindow {
         // view item
         private class ViewHolder {
             TextView textView;
+            View pop_line;
         }
     }
 

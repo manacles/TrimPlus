@@ -66,6 +66,7 @@ public class MessageCenterActivity extends BaseActivity implements IgetPushLogVi
         initListener();
 
         getPushLogPresenter = new GetPushLogPresenter(new Model(), this);
+        loadingLayout.setVisibility(View.VISIBLE);
         getPushLogRequest(page);
     }
 
@@ -85,9 +86,8 @@ public class MessageCenterActivity extends BaseActivity implements IgetPushLogVi
     }
 
     private void getPushLogRequest(int mpage) {
-        if (adapter == null) {
-            loadingLayout.setVisibility(View.VISIBLE);
-        }
+        ivDataEmpty.setVisibility(View.GONE);
+
         swiperefreshlayout.setRefreshing(false);
 
         HashMap<String, Object> params = new HashMap<>();
@@ -118,6 +118,7 @@ public class MessageCenterActivity extends BaseActivity implements IgetPushLogVi
                 adapter.notifyDataSetChanged();
             }
         } else if (message.getError_code().equals("201")) {
+            ivDataEmpty.setVisibility(View.VISIBLE);
             ToastUtil.sToast(this, "没有更多数据！");
         } else {
             ToastUtil.sToast(this, "请求错误！");

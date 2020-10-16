@@ -17,9 +17,8 @@
             android:id="@+id/pop_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:text="请选择"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:textColor="#8a8f99"
             android:textSize="15sp" />
 

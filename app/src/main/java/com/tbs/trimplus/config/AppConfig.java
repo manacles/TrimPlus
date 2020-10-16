@@ -1,5 +1,7 @@
 package com.tbs.trimplus.config;
 
+import com.tbs.trimplus.utils.Constant;
+
 public class AppConfig {
 
     //正式环境
@@ -15,5 +17,8 @@ public class AppConfig {
     //发送短信验证码
     public static final String APP_SMS_CODE = TOBOSU_URL + "tapp/passport/app_sms_code";
 
-
+    /*** 上传头像的接口*/
+    public static final String UPLOAD_ICON = TOBOSU_URL + "cloud/upload/upload_for_ke?";
+    //修改用户头像
+    public static final String UPLOADHEADPICTUREURL = TOBOSU_URL + "tapp/user/chage_user_info";
 }

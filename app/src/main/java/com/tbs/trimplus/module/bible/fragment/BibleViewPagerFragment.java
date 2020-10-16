@@ -77,6 +77,7 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
         initListener();
 
         getArticlePresenter = new GetArticlePresenter(new Model(), this);
+        loadingLayout.setVisibility(View.VISIBLE);
         getArticleRequest(page);
     }
 
@@ -86,10 +87,8 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
     }
 
     private void getArticleRequest(int mpage) {
+        ivDataEmpty.setVisibility(View.GONE);
         swiperefreshlayout.setRefreshing(false);
-        if (adapter == null) {
-            loadingLayout.setVisibility(View.VISIBLE);
-        }
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("page", mpage + "");
@@ -141,7 +140,7 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
                 ToastUtil.sToast(context, "没有更多数据！");
             }
         } else {
-            if (page==1){
+            if (page == 1) {
                 ivDataEmpty.setVisibility(View.VISIBLE);
             }
             LogUtil.e("------" + bibleBaseList.getStatus() + "--" + bibleBaseList.getMsg() + "-----");

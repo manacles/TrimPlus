@@ -164,9 +164,7 @@ public class SearchActivity extends AppCompatActivity implements IdoSearchView {
         swiperefreshlayout.setVisibility(View.VISIBLE);
 
         swiperefreshlayout.setRefreshing(false);
-        if (adapter == null) {
-            loadingLayout.setVisibility(View.VISIBLE);
-        }
+
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", AppUtil.getDateToken());
         params.put("title", searchWord);
@@ -224,6 +222,7 @@ public class SearchActivity extends AppCompatActivity implements IdoSearchView {
                         if (adapter != null) {
                             adapter.setSearchWord(searchWord);
                         }
+                        loadingLayout.setVisibility(View.VISIBLE);
                         getSearchArticleRequest();
 
                         tvSearch.setVisibility(View.GONE);

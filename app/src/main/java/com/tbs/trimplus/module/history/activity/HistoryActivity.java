@@ -69,6 +69,7 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
         initListener();
 
         getHistoryRecordPresenter = new GetHistoryRecordPresenter(new Model(), this);
+        loadingLayout.setVisibility(View.VISIBLE);
         getHistoryRecordRequest(page);
     }
 
@@ -78,9 +79,8 @@ public class HistoryActivity extends BaseActivity implements IgetHistoryRecordVi
     }
 
     private void getHistoryRecordRequest(int mpage) {
-        if (adapter == null) {
-            loadingLayout.setVisibility(View.VISIBLE);
-        }
+        ivDataEmpty.setVisibility(View.GONE);
+
         swiperefreshlayout.setRefreshing(false);
         String uid = CacheUtil.getString(this, Constant.USER_INFO, "uid");
         HashMap<String, Object> params = new HashMap<>();
