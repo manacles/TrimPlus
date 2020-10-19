@@ -15,4 +15,7 @@ public interface IgetUserInfoDataView extends ICommonView {
 
     //设置装修阶段
     void setDecorate(BaseObject baseObject, int decorateType);
+
+    //修改城市信息
+    void setCity(BaseObject baseObject,String currentCity);
 }

@@ -91,6 +91,13 @@ public class Model implements IModel {
         return api.getCity(params);
     }
 
+    //修改城市信息
+    @Override
+    public Observable<BaseObject> setCity(Map<String, Object> params) {
+        api = ApiInstance();
+        return api.setCity(params);
+    }
+
     //获取历史记录
     @Override
     public Observable<BaseList<Bible>> getHistoryRecord(Map<String, Object> params) {

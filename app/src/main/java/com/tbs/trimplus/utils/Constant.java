@@ -17,6 +17,7 @@ public class Constant {
     public static final int CHANGE_USERNAME_REQUESTCODE = 1;
     public static final int CHANGE_USERNAME_RESULTCODE = 11;
 
+    public static final int CHANGE_USER_CITY_REQUESTCODE = 2;
     public static final int CHANGE_USER_CITY_RESULTCODE = 22;
 
     public static final String CITY_PREFERENCE = "city_preference";

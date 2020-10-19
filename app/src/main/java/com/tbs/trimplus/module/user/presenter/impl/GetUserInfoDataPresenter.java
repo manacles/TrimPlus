@@ -100,4 +100,30 @@ public class GetUserInfoDataPresenter implements IgetUserInfoDataPresenter {
                     }
                 });
     }
+
+    @Override
+    public void setCity(Map<String, Object> params, String city) {
+        model.setCity(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BaseObject>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(BaseObject baseObject) {
+                        view.setCity(baseObject, city);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.DialogStatus(1, e.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+    }
 }

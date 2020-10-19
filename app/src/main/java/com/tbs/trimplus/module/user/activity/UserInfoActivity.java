@@ -171,7 +171,7 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserInfoActivity.this, ChangeCityActivity.class);
-                startActivityForResult(intent, Constant.CHANGE_USER_CITY_RESULTCODE);
+                startActivityForResult(intent, Constant.CHANGE_USER_CITY_REQUESTCODE);
             }
         });
 
@@ -541,9 +541,37 @@ public class UserInfoActivity extends BaseActivity implements IgetUserInfoDataVi
                     tvUserinfoName.setText(data.getStringExtra("newname"));
                 }
                 break;
+            case Constant.CHANGE_USER_CITY_REQUESTCODE:
+                if (data != null) {
+                    String city = data.getStringExtra("city");
+                    AppUtil.setCity(this, city);
+
+                    setCityRequest(city);
+                }
+                break;
             default:
                 break;
 
         }
     }
+
+    private void setCityRequest(String city) {
+        HashMap<String, Object> params = new HashMap<>();
+        if (!city.contains("市")) {
+            city = city + "市";
+        }
+        params.put("city_name", city);
+        params.put("token", AppUtil.getDateToken());
+        params.put("uid", CacheUtil.getString(this, Constant.USER_INFO, "uid"));
+        getUserInfoDataPresenter.setCity(params, city);
+    }
+
+    @Override
+    public void setCity(BaseObject baseObject, String currentCity) {
+        if (baseObject.getStatus().equals("200")) {
+            tvUserinfoCity.setText(currentCity);
+        }
+    }
+
+
 }

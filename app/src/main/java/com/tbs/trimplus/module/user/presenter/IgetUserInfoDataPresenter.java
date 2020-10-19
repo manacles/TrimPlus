@@ -16,5 +16,10 @@ public interface IgetUserInfoDataPresenter {
     /**
      * 设置装修阶段
      */
-    void setDecorate(Map<String,Object> params,int decorateType);
+    void setDecorate(Map<String, Object> params, int decorateType);
+
+    /**
+     * 设置城市信息
+     */
+    void setCity(Map<String, Object> params, String city);
 }

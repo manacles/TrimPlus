@@ -1,7 +1,9 @@
 package com.tbs.trimplus.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.widget.ImageView;
 
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
@@ -24,7 +26,9 @@ public class GlideUtil {
      * @param imageView
      */
     public static void glideLoader(Context context, String imgUrl, int erroImg, int emptyImg, ImageView imageView) {
-        Glide.with(context).load(imgUrl).placeholder(emptyImg).error(erroImg).into(imageView);
+        if (!isDestory((Activity) context)){
+            Glide.with(context).load(imgUrl).placeholder(emptyImg).error(erroImg).into(imageView);
+        }
     }
 
     /**
@@ -38,17 +42,27 @@ public class GlideUtil {
      * @param imageType 0==圆形图片   1==圆角图片
      */
     public static void glideLoader(final Context context, String url, int erroImg, int emptyImg, final ImageView iv, int imageType) {
-        if (CIRCLE_IMAGE == imageType) {
-            Glide.with(context).asBitmap().load(url).centerCrop().into(new BitmapImageViewTarget(iv) {
-                @Override
-                protected void setResource(Bitmap resource) {
-                    RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                    circularBitmapDrawable.setCircular(true);
-                    iv.setImageDrawable(circularBitmapDrawable);
-                }
-            });
-        } else if (ROUND_IMAGE == imageType) {
-            Glide.with(context).load(url).placeholder(emptyImg).error(erroImg).transform(new GlideRoundTransform(context, 10)).into(iv);
+        if (!isDestory((Activity) context)){
+            if (CIRCLE_IMAGE == imageType) {
+                Glide.with(context).asBitmap().load(url).centerCrop().into(new BitmapImageViewTarget(iv) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        iv.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
+            } else if (ROUND_IMAGE == imageType) {
+                Glide.with(context).load(url).placeholder(emptyImg).error(erroImg).transform(new GlideRoundTransform(context, 10)).into(iv);
+            }
+        }
+    }
+
+    public static boolean isDestory(Activity activity) {
+        if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

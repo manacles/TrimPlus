@@ -86,6 +86,13 @@ public interface Api {
     Observable<ResultList<City>> getCity(@FieldMap Map<String, Object> params);
 
     /**
+     * 设置用户城市信息
+     */
+    @FormUrlEncoded
+    @POST("zapp/myself/set_city")
+    Observable<BaseObject> setCity(@FieldMap Map<String, Object> params);
+
+    /**
      * 获取历史记录
      */
     @FormUrlEncoded

@@ -47,6 +47,9 @@ public interface IModel {
     //获取城市信息
     Observable<ResultList<City>> getCity(Map<String, Object> params);
 
+    //修改城市信息
+    Observable<BaseObject> setCity(Map<String, Object> params);
+
     //获取历史记录
     Observable<BaseList<Bible>> getHistoryRecord(Map<String, Object> params);
 

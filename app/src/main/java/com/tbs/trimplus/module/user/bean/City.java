@@ -55,4 +55,15 @@ public class City {
     public void setPinyin_sort(String pinyin_sort) {
         this.pinyin_sort = pinyin_sort;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "cityid='" + cityid + '\'' +
+                ", simpname='" + simpname + '\'' +
+                ", hot_flag='" + hot_flag + '\'' +
+                ", isopen='" + isopen + '\'' +
+                ", pinyin_sort='" + pinyin_sort + '\'' +
+                '}';
+    }
 }

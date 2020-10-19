@@ -21,6 +21,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    sourceSets{
+        main{
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []    //disable automatic ndk-build
+        }
+    }
 }
 
 dependencies {
@@ -70,4 +77,9 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     //PictureSelector图片选择框架
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.9'
+    //citypicker
+    implementation 'com.zaaach:citypicker:2.0.3'	//必选
+    //TinyPinyin
+    implementation 'com.github.promeg:tinypinyin:2.0.3' // TinyPinyin核心包，约80KB
+    implementation 'com.github.promeg:tinypinyin-lexicons-android-cncity:2.0.3' // 可选，适用于Android的中国地区词典
 }
