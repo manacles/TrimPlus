@@ -1,5 +1,6 @@
 package com.tbs.trimplus.module.main.fragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseFragment;
 import com.tbs.trimplus.common.bean.BaseObject;
+import com.tbs.trimplus.config.AppConfig;
 import com.tbs.trimplus.module.apimodel.Model;
 import com.tbs.trimplus.module.main.activity.MainActivity;
 import com.tbs.trimplus.module.main.adapter.HomeAuthorAdapter;
@@ -20,6 +22,7 @@ import com.tbs.trimplus.module.main.adapter.HomeHeadlinesAdapter;
 import com.tbs.trimplus.module.main.bean.Home;
 import com.tbs.trimplus.module.main.presenter.impl.GetIndexDataPresenter;
 import com.tbs.trimplus.module.main.view.IgetIndexDataView;
+import com.tbs.trimplus.module.welcome.activity.WebViewActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.ToastUtil;
 import com.youth.banner.Banner;
@@ -40,12 +43,12 @@ public class HomeFragment extends BaseFragment implements IgetIndexDataView {
 
     @BindView(R.id.banner_home)
     Banner bannerHome;
-    @BindView(R.id.btn_home_freedesign)
-    Button btnHomeFreedesign;
-    @BindView(R.id.btn_home_freeprice)
-    Button btnHomeFreeprice;
-    @BindView(R.id.btn_home_calculator)
-    Button btnHomeCalculator;
+    @BindView(R.id.iv_home_freedesign)
+    ImageView ivHomeFreedesign;
+    @BindView(R.id.iv_home_freeprice)
+    ImageView ivHomeFreeprice;
+    @BindView(R.id.iv_home_calculator)
+    ImageView ivHomeCalculator;
     @BindView(R.id.tv_home_more_headlines)
     TextView tvHomeMoreHeadlines;
     @BindView(R.id.recyclerview_home_headlines)
@@ -73,6 +76,30 @@ public class HomeFragment extends BaseFragment implements IgetIndexDataView {
 
         getIndexDataPresenter = new GetIndexDataPresenter(new Model(), this);
         getIndexDataRequest();
+    }
+
+    @OnClick({R.id.iv_home_freedesign, R.id.iv_home_freeprice, R.id.iv_home_calculator, R.id.tv_home_more_headlines})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_home_freedesign:
+                Intent intent;
+                intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("mLoadingUrl", AppConfig.QUOTE);
+                startActivity(intent);
+                break;
+            case R.id.iv_home_freeprice:
+                Intent intent2;
+                intent2 = new Intent(context, WebViewActivity.class);
+                intent2.putExtra("mLoadingUrl", AppConfig.FREE_PRICE_PAGE);
+                startActivity(intent2);
+                break;
+            case R.id.iv_home_calculator:
+                break;
+            case R.id.tv_home_more_headlines:
+                MainActivity mainActivity = (MainActivity) context;
+                mainActivity.getRgMain().check(R.id.rb_bible);
+                break;
+        }
     }
 
     private void getIndexDataRequest() {
@@ -135,25 +162,13 @@ public class HomeFragment extends BaseFragment implements IgetIndexDataView {
         bannerHome.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(Object data, int position) {
-                // TODO: 2020/9/22 点击进入webview
-                ToastUtil.sToast(context, "点击了第" + position + "个，" + carouselBeanArrayList.get(position).getContent_url());
+                Intent intent;
+                intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("mLoadingUrl", carouselBeanArrayList.get(position).getContent_url());
+                startActivity(intent);
             }
         });
     }
 
-    @OnClick({R.id.btn_home_freedesign, R.id.btn_home_freeprice, R.id.btn_home_calculator, R.id.tv_home_more_headlines})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_home_freedesign:
-                break;
-            case R.id.btn_home_freeprice:
-                break;
-            case R.id.btn_home_calculator:
-                break;
-            case R.id.tv_home_more_headlines:
-                MainActivity mainActivity = (MainActivity) context;
-                mainActivity.getRgMain().check(R.id.rb_bible);
-                break;
-        }
-    }
+
 }

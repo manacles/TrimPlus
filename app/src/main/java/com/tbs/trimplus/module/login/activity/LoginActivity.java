@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -60,11 +63,15 @@ public class LoginActivity extends AppCompatActivity implements IloginByPassword
     Button btnLoginBywechat;
     @BindView(R.id.btn_login_switch)
     Button btnLoginSwitch;
+    @BindView(R.id.iv_see_psd)
+    ImageView ivSeePsd;
 
     private int defaultLoginWay;    //1.短信验证码登录；2.账号密码登录;
 
     private LoginByPasswordPresenter loginByPasswordPresenter;
     private LoginByVerifyCodePresenter loginByVerifyCodePresenter;
+
+    private boolean canSeePsd = false;
 
     private int countDown;
     Handler handler = new Handler();
@@ -148,7 +155,8 @@ public class LoginActivity extends AppCompatActivity implements IloginByPassword
     }
 
     @OnClick({R.id.iv_login_close, R.id.tv_verify_code, R.id.btn_login_bymessage,
-            R.id.btn_login_bypassword, R.id.btn_login_bywechat, R.id.btn_login_switch})
+            R.id.btn_login_bypassword, R.id.btn_login_bywechat, R.id.btn_login_switch,
+            R.id.iv_see_psd})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_close:
@@ -234,6 +242,19 @@ public class LoginActivity extends AppCompatActivity implements IloginByPassword
                 break;
             case R.id.btn_login_switch:
                 switchLoginWay(defaultLoginWay);
+                break;
+            case R.id.iv_see_psd:
+                if (canSeePsd) {
+                    etLoginPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    ivSeePsd.setImageResource(R.drawable.visible);
+                    etLoginPassword.setSelection(etLoginPassword.getText().length());
+                    canSeePsd = false;
+                } else {
+                    etLoginPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    ivSeePsd.setImageResource(R.drawable.not_visible);
+                    etLoginPassword.setSelection(etLoginPassword.getText().length());
+                    canSeePsd = true;
+                }
                 break;
         }
     }

@@ -118,7 +118,10 @@ public class MessageCenterActivity extends BaseActivity implements IgetPushLogVi
                 adapter.notifyDataSetChanged();
             }
         } else if (message.getError_code().equals("201")) {
-            ivDataEmpty.setVisibility(View.VISIBLE);
+            if (page == 1) {
+                ivDataEmpty.setVisibility(View.VISIBLE);
+                return;
+            }
             ToastUtil.sToast(this, "没有更多数据！");
         } else {
             ToastUtil.sToast(this, "请求错误！");

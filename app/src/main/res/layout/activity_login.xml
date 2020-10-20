@@ -12,7 +12,6 @@
 
 
     <RelativeLayout
-        android:id="@+id/rl_login_head"
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_marginBottom="40dp">
@@ -59,7 +58,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginEnd="8dp"
                         android:src="@drawable/icon_user" />
 
                     <EditText
@@ -99,7 +98,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginEnd="8dp"
                         android:src="@drawable/icon_password" />
 
                     <EditText
@@ -150,7 +149,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginEnd="8dp"
                         android:src="@drawable/icon_user" />
 
                     <EditText
@@ -178,7 +177,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginEnd="8dp"
                         android:src="@drawable/icon_password" />
 
                     <EditText
@@ -191,6 +190,13 @@
                         android:inputType="textPassword"
                         android:maxLength="13"
                         android:textColorHint="#b9b9b9" />
+
+                    <ImageView
+                        android:id="@+id/iv_see_psd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/visible" />
                 </LinearLayout>
 
                 <View

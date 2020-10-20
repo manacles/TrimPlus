@@ -21,11 +21,13 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseActivity;
 import com.tbs.trimplus.common.bean.BaseObject;
+import com.tbs.trimplus.config.AppConfig;
 import com.tbs.trimplus.module.apimodel.Model;
 import com.tbs.trimplus.module.bible.bean.BibleDetail;
 import com.tbs.trimplus.module.bible.presenter.impl.DoBibleDetailPresenter;
 import com.tbs.trimplus.module.bible.view.IdoBibleDetailView;
 import com.tbs.trimplus.module.login.activity.LoginActivity;
+import com.tbs.trimplus.module.welcome.activity.WebViewActivity;
 import com.tbs.trimplus.utils.AppUtil;
 import com.tbs.trimplus.utils.CacheUtil;
 import com.tbs.trimplus.utils.Constant;
@@ -225,7 +227,10 @@ public class BibleDetailActivity extends BaseActivity implements IdoBibleDetailV
                 }
                 break;
             case R.id.tv_need_decoration:
-                // TODO: 2020/9/27 我要装修跳转页面
+                Intent intent;
+                intent = new Intent(this, WebViewActivity.class);
+                intent.putExtra("mLoadingUrl", AppConfig.FREE_PRICE_PAGE);
+                startActivity(intent);
                 break;
             case R.id.tv_attention:
                 //关注作者

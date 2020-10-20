@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -18,15 +19,51 @@
             app:banner_indicator_gravity="right" />
 
         <!--发单入口-->
-        <GridLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/nave"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_home_freedesign"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_home_freeprice"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    tools:ignore="NestedWeights" />
+
+                <ImageView
+                    android:id="@+id/iv_home_calculator"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent" />
+            </LinearLayout>
+        </LinearLayout>
+        <!--<GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:background="@drawable/nave"
             android:columnCount="2">
 
-            <Button
-                android:id="@+id/btn_home_freedesign"
+            <ImageView
+                android:id="@+id/iv_home_freedesign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowSpan="2"
@@ -34,23 +71,23 @@
                 android:layout_columnWeight="1"
                 android:background="@android:color/transparent" />
 
-            <Button
-                android:id="@+id/btn_home_freeprice"
+            <ImageView
+                android:id="@+id/iv_home_freeprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:background="@android:color/transparent" />
 
-            <Button
-                android:id="@+id/btn_home_calculator"
+            <ImageView
+                android:id="@+id/iv_home_calculator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:background="@android:color/transparent" />
 
-        </GridLayout>
+        </GridLayout>-->
 
         <!--装修头条-->
         <LinearLayout
