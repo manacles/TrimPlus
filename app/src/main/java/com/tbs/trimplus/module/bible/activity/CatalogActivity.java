@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSON;
-import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.R;
 import com.tbs.trimplus.base.BaseActivity;
 import com.tbs.trimplus.module.bible.adapter.CatalogAdapter;
@@ -55,61 +54,69 @@ public class CatalogActivity extends BaseActivity {
         initToolbar(toolbar);
         toolbarRight.setVisibility(View.GONE);
 
+        selectedCatalogs = CatalogManage.getSelectedCatalog(this, true);
+        noselectedCatalogs = CatalogManage.getSelectedCatalog(this, false);
+
         initData();
         initListener();
     }
 
     private void initData() {
-        selectedCatalogs = CatalogManage.getSelectedCatalog(this, true);
-        noselectedCatalogs = CatalogManage.getSelectedCatalog(this, false);
 
-        selectedAdapter = new CatalogAdapter(this, selectedCatalogs, true);
-        noselectedAdapter = new CatalogAdapter(this, noselectedCatalogs, false);
+        if (selectedCatalogs != null) {
+            selectedAdapter = new CatalogAdapter(this, selectedCatalogs, true);
+            GridLayoutManager manager1 = new GridLayoutManager(this, 4);
+            recyclerviewSelected.setLayoutManager(manager1);
+            recyclerviewSelected.setAdapter(selectedAdapter);
+        }
 
-        GridLayoutManager manager1 = new GridLayoutManager(this, 4);
-        GridLayoutManager manager2 = new GridLayoutManager(this, 4);
-
-        recyclerviewSelected.setLayoutManager(manager1);
-        recyclerviewNoselected.setLayoutManager(manager2);
-
-        recyclerviewSelected.setAdapter(selectedAdapter);
-        recyclerviewNoselected.setAdapter(noselectedAdapter);
+        if (noselectedCatalogs != null) {
+            noselectedAdapter = new CatalogAdapter(this, noselectedCatalogs, false);
+            GridLayoutManager manager2 = new GridLayoutManager(this, 4);
+            recyclerviewNoselected.setLayoutManager(manager2);
+            recyclerviewNoselected.setAdapter(noselectedAdapter);
+        }
 
     }
 
 
     private void initListener() {
-        selectedAdapter.setOnItemClickListener(new CatalogAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(int position) {
-                Catalog catalog = selectedCatalogs.get(position);
-                catalog.setSelected(false);
+        if (selectedAdapter != null) {
+            selectedAdapter.setOnItemClickListener(new CatalogAdapter.OnItemClickListener() {
+                @Override
+                public void onClick(int position) {
+                    Catalog catalog = selectedCatalogs.get(position);
+                    catalog.setSelected(false);
 
-                noselectedCatalogs.add(catalog);
-                noselectedAdapter.notifyDataSetChanged();
+                    noselectedCatalogs.add(catalog);
+                    noselectedAdapter.notifyDataSetChanged();
 
-                selectedCatalogs.remove(position);
-                selectedAdapter.notifyDataSetChanged();
+                    selectedCatalogs.remove(position);
+                    selectedAdapter.notifyDataSetChanged();
 
-                toolbarRight.setVisibility(View.VISIBLE);
-            }
-        });
+                    toolbarRight.setVisibility(View.VISIBLE);
+                }
+            });
+        }
 
-        noselectedAdapter.setOnItemClickListener(new CatalogAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(int position) {
-                Catalog catalog = noselectedCatalogs.get(position);
-                catalog.setSelected(true);
+        if (noselectedAdapter != null) {
+            noselectedAdapter.setOnItemClickListener(new CatalogAdapter.OnItemClickListener() {
+                @Override
+                public void onClick(int position) {
+                    Catalog catalog = noselectedCatalogs.get(position);
+                    catalog.setSelected(true);
 
-                selectedCatalogs.add(catalog);
-                selectedAdapter.notifyDataSetChanged();
+                    selectedCatalogs.add(catalog);
+                    selectedAdapter.notifyDataSetChanged();
 
-                noselectedCatalogs.remove(position);
-                noselectedAdapter.notifyDataSetChanged();
+                    noselectedCatalogs.remove(position);
+                    noselectedAdapter.notifyDataSetChanged();
 
-                toolbarRight.setVisibility(View.VISIBLE);
-            }
-        });
+                    toolbarRight.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+
 
         toolbarRight.setOnClickListener(new View.OnClickListener() {
             @Override

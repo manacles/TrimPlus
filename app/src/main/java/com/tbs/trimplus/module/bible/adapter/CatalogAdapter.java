@@ -1,7 +1,6 @@
 package com.tbs.trimplus.module.bible.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.R;
 import com.tbs.trimplus.module.bible.bean.Catalog;
-import com.tbs.trimplus.utils.DensityUtil;
 
 import java.util.ArrayList;
 

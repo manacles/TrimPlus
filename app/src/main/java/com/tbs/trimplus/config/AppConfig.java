@@ -1,7 +1,5 @@
 package com.tbs.trimplus.config;
 
-import com.tbs.trimplus.utils.Constant;
-
 public class AppConfig {
 
     //正式环境
@@ -10,7 +8,7 @@ public class AppConfig {
 
     //测试环境
     public static final String TOBOSU_URL = "http://www.dev.tobosu.com/";
-    public static final String M_TOBOSU_URL = "http://m.dev.tobosu.com/";
+    private static final String M_TOBOSU_URL = "http://m.dev.tobosu.com/";
 
 
     //获取图形验证码（未 使用）:图形验证码验证有问题，跳过图形验证，直接短信验证
@@ -25,7 +23,7 @@ public class AppConfig {
     public static final String UPLOADHEADPICTUREURL = TOBOSU_URL + "tapp/user/chage_user_info";
 
     // TODO: 2018/6/26 发单页地址******************************************
-    public static final String APP_TYPE = "&app_type=2";     //app_type 1是土拨鼠; 2是装好家
+    private static final String APP_TYPE = "&app_type=2";     //app_type 1是土拨鼠; 2是装好家
 
     //免费报价
     public static final String FREE_PRICE_PAGE = M_TOBOSU_URL + "free_price_page?channel=app&subchannel=android" + APP_TYPE;

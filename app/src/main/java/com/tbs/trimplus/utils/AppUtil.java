@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.facebook.stetho.common.LogUtil;
 import com.tbs.trimplus.module.login.bean.User;
 import com.tbs.trimplus.module.user.bean.City;
 
@@ -133,5 +134,18 @@ public class AppUtil {
         return CacheUtil.getString(context, Constant.CITY_PREFERENCE, Constant.CITYJSON);
     }
 
+    private final static int MIN_CLICK_DELAY_TIME = 1500;
+    private static long lastClickTime = System.currentTimeMillis();
+
+    public static boolean canClick() {
+        boolean flag = false;
+        long curClickTime = System.currentTimeMillis();
+        if ((curClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
+            flag = true;
+        }
+        LogUtil.e("------lastClickTime---------" + lastClickTime + "------curClickTime------" + curClickTime);
+        lastClickTime = curClickTime;
+        return flag;
+    }
 
 }

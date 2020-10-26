@@ -1,5 +1,6 @@
 package com.tbs.trimplus.module.login.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -99,6 +100,8 @@ public class LoginActivity extends AppCompatActivity implements IloginByPassword
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        getWindow().setStatusBarColor(Color.alpha(R.color.bg_login));
 
         initViews();
 

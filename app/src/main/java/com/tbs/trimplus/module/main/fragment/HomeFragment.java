@@ -2,7 +2,6 @@ package com.tbs.trimplus.module.main.fragment;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +23,7 @@ import com.tbs.trimplus.module.main.presenter.impl.GetIndexDataPresenter;
 import com.tbs.trimplus.module.main.view.IgetIndexDataView;
 import com.tbs.trimplus.module.welcome.activity.WebViewActivity;
 import com.tbs.trimplus.utils.AppUtil;
+import com.tbs.trimplus.utils.NetUtil;
 import com.tbs.trimplus.utils.ToastUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
@@ -82,16 +82,24 @@ public class HomeFragment extends BaseFragment implements IgetIndexDataView {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_home_freedesign:
-                Intent intent;
-                intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("mLoadingUrl", AppConfig.QUOTE);
-                startActivity(intent);
+                if (NetUtil.isNetAvailable(context) && AppUtil.canClick()) {
+                    Intent intent;
+                    intent = new Intent(context, WebViewActivity.class);
+                    intent.putExtra("mLoadingUrl", AppConfig.QUOTE);
+                    startActivity(intent);
+                } else {
+                    LogUtil.e("---------不给点------");
+                }
                 break;
             case R.id.iv_home_freeprice:
-                Intent intent2;
-                intent2 = new Intent(context, WebViewActivity.class);
-                intent2.putExtra("mLoadingUrl", AppConfig.FREE_PRICE_PAGE);
-                startActivity(intent2);
+                if (NetUtil.isNetAvailable(context) && AppUtil.canClick()) {
+                    Intent intent2;
+                    intent2 = new Intent(context, WebViewActivity.class);
+                    intent2.putExtra("mLoadingUrl", AppConfig.FREE_PRICE_PAGE);
+                    startActivity(intent2);
+                } else {
+                    LogUtil.e("---------不给点------");
+                }
                 break;
             case R.id.iv_home_calculator:
                 break;
@@ -162,10 +170,12 @@ public class HomeFragment extends BaseFragment implements IgetIndexDataView {
         bannerHome.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(Object data, int position) {
-                Intent intent;
-                intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("mLoadingUrl", carouselBeanArrayList.get(position).getContent_url());
-                startActivity(intent);
+                if (NetUtil.isNetAvailable(context) && AppUtil.canClick()) {
+                    Intent intent;
+                    intent = new Intent(context, WebViewActivity.class);
+                    intent.putExtra("mLoadingUrl", carouselBeanArrayList.get(position).getContent_url());
+                    startActivity(intent);
+                }
             }
         });
     }
