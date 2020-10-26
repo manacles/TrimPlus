@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tbs.trimplus">
 
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 这个权限用于进行网络定位 -->
@@ -18,35 +19,70 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/icon_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".module.welcome.activity.WebViewActivity"></activity>
-        <activity android:name=".module.user.activity.MessageCenterActivity" />
-        <activity android:name=".module.user.activity.MyLikeActivity" />
-        <activity android:name=".module.user.activity.MyCollectActivity" />
-        <activity android:name=".module.user.activity.MyAttentionActivity" />
-        <activity android:name=".module.bible.activity.SearchActivity" />
-        <activity android:name=".module.bible.activity.AuthorDetailActivity" />
-        <activity android:name=".module.bible.activity.BibleDetailActivity" />
-        <activity android:name=".module.bible.activity.CatalogActivity" />
-        <activity android:name=".module.setting.activity.SettingActivity" />
-        <activity android:name=".module.setting.activity.FeedBackActivity" />
-        <activity android:name=".module.history.activity.HistoryActivity" />
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".module.welcome.activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.user.activity.MessageCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.user.activity.MyLikeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.user.activity.MyCollectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.user.activity.MyAttentionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.bible.activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.bible.activity.AuthorDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.bible.activity.BibleDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.bible.activity.CatalogActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.setting.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.setting.activity.FeedBackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.history.activity.HistoryActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.user.activity.ChangeCityActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/DefaultCityPickerTheme" />
         <activity
             android:name=".module.user.activity.ChangeUserNameActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible" />
-        <activity android:name=".module.user.activity.UserInfoActivity" />
-        <activity android:name=".module.login.activity.LoginActivity" />
-        <activity android:name=".module.welcome.activity.WelcomeActivity">
+        <activity
+            android:name=".module.user.activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.login.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.welcome.activity.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.main.activity.MainActivity" />
+        <activity
+            android:name=".module.main.activity.MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

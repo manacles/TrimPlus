@@ -19,6 +19,7 @@ import com.tbs.trimplus.module.apimodel.Model;
 import com.tbs.trimplus.module.bible.activity.BibleDetailActivity;
 import com.tbs.trimplus.module.bible.bean.Catalog;
 import com.tbs.trimplus.module.bible.presenter.impl.GetArticlePresenter;
+import com.tbs.trimplus.module.bible.utils.CatalogManage;
 import com.tbs.trimplus.module.bible.view.IgetArticleView;
 import com.tbs.trimplus.module.history.adapter.HistoryAdapter;
 import com.tbs.trimplus.module.main.bean.Bible;
@@ -43,7 +44,6 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
     @BindView(R.id.iv_data_empty)
     ImageView ivDataEmpty;
 
-    private Context context;
     private Catalog catalog;
     private int position;
 
@@ -55,11 +55,6 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
 
     private GetArticlePresenter getArticlePresenter;
 
-    public BibleViewPagerFragment(Context context, Catalog catalog, int position) {
-        this.context = context;
-        this.catalog = catalog;
-        this.position = position;
-    }
 
     @Override
     public View initView() {
@@ -72,13 +67,24 @@ public class BibleViewPagerFragment extends BaseFragment implements IgetArticleV
     public void initData() {
         super.initData();
 
-        recyclerview.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
+        if (getArguments() != null) {
+            position = getArguments().getInt("position");
 
-        initListener();
+            ArrayList<Catalog> selectedCatalogs = CatalogManage.getSelectedCatalog(context, true);
+            if (selectedCatalogs != null) {
 
-        getArticlePresenter = new GetArticlePresenter(new Model(), this);
-        loadingLayout.setVisibility(View.VISIBLE);
-        getArticleRequest(page);
+                catalog = selectedCatalogs.get(position);
+
+                recyclerview.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
+
+                initListener();
+
+                getArticlePresenter = new GetArticlePresenter(new Model(), this);
+                loadingLayout.setVisibility(View.VISIBLE);
+                getArticleRequest(page);
+            }
+        }
+
     }
 
     private void initListener() {
